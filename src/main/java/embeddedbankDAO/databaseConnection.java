@@ -3,6 +3,9 @@ package embeddedbankDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 public class databaseConnection {
 	
 	private static databaseConnection  dbConncection= null;
@@ -18,6 +21,7 @@ public class databaseConnection {
     }
 	
     public static Connection connect() {
+    	
     	try{  
     		Class.forName("com.mysql.cj.jdbc.Driver");  
     		con=DriverManager.getConnection(
@@ -31,5 +35,10 @@ public class databaseConnection {
     	return con;
     }
     
+    public static EntityManager getEntityManager() {
+    	EntityManager entityManager =Persistence.createEntityManagerFactory(
+				"embeddedBank").createEntityManager();
+    	return entityManager;
+    }
     
 }

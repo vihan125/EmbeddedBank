@@ -1,38 +1,41 @@
 package embeddedbankDAO;
 
-import java.sql.*;  
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 
 public class authService {
 	
-	private Statement stmt;
-	private ResultSet rs;
 	
-	public authService() throws SQLException 
+	public authService() 
 	{
-		stmt = databaseConnection.connect().createStatement();
+		
 	}
 	
 	public int validateUnsuccessfull(String MBA_ID, String password){
-		
-		
-		try {
-			rs= stmt.executeQuery("select * from mobile_banking_account where MBA_ID=\"" + MBA_ID + "\"and password=\"" + password+"\";");
-			
-			if (rs.next() == false) { 
+		EntityManager entityManager = databaseConnection.getEntityManager();
+
+		Query q = entityManager.createNativeQuery(
+				"select c.customer_ID from mobile_banking_account c where c.MBA_ID=? and c.password=?");
+		q.setParameter(1, MBA_ID);	
+		q.setParameter(2, password);
+		List<?> accountList = q.getResultList();
+		if(accountList.isEmpty()) {
+			    System.out.println("Bad Credentials");
 				return 0;
-				
-			} else { 
-				return rs.getInt("Customer_ID");
 			}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}  
+			else {
+				System.out.println("login successfull.");
+				return (Integer) accountList.get(0);
+			}
+		}
+		
+		
 		
 		
 	}
-}
 	
 
 
