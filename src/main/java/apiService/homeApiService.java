@@ -17,7 +17,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import response.AuthenticationResponse;
 import util.JwTokenHelper;
-import util.authService;
+import embeddedbankDAO.authService;
 
 @Path("/")
 public class homeApiService extends BaseApiService {

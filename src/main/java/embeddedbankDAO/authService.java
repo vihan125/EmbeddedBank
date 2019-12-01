@@ -1,4 +1,4 @@
-package util;
+package embeddedbankDAO;
 
 import java.sql.*;  
 
@@ -7,18 +7,9 @@ public class authService {
 	private Statement stmt;
 	private ResultSet rs;
 	
-	public authService() 
+	public authService() throws SQLException 
 	{
-	try{  
-		Class.forName("com.mysql.cj.jdbc.Driver");  
-		Connection con=DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/embeddedbank","root","r00t@1997");  
-		stmt=con.createStatement();  
-
-	 }catch(Exception e){ 
-		System.out.println(e);
-	
-	} 
+		stmt = databaseConnection.connect().createStatement();
 	}
 	
 	public int validateUnsuccessfull(String username, String password){
