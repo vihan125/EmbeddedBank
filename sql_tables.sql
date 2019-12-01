@@ -10,21 +10,21 @@ create table users(
 create table mobile_unit(
 	MU_ID int(9),
     agent_ID int(9) NOT NULL,
-    balance numeric(10,2),
+    balance numeric(12,2),
     PRIMARY KEY(MU_ID)
 );
 
 create table FD_type(
 	FD_type_ID int(2),
-    interest_rate numeric(2,2) NOT NULL,
+    interest_rate numeric(5,2) NOT NULL,
     name varchar(20),
     PRIMARY KEY(FD_type_ID)
 );
 
 create table account_type(
 	acc_type_ID int(2),
-    interest_rate numeric(2,2) NOT NULL,
-    minimum_balance numeric(4,2) NOT NULL,
+    interest_rate numeric(5,2) NOT NULL,
+    minimum_balance numeric(6,2) NOT NULL,
     name varchar(20),
     PRIMARY KEY(acc_type_ID)
 );
@@ -32,21 +32,21 @@ create table account_type(
 create table deposits(
 	deposit_ID int(9),
     date_of_deposit date NOT NULL,
-    amount numeric(10,2) NOT NULL,
+    amount numeric(12,2) NOT NULL,
     PRIMARY KEY(deposit_ID)
 );
 
 create table withdrawls(
 	withdrawl_ID int(9),
     date_of_withdrawl date NOT NULL,
-    amount numeric(10,2) NOT NULL,
+    amount numeric(12,2) NOT NULL,
     PRIMARY KEY(withdrawl_ID)
 );
 
 create table mobileT(
 	mobileT_ID int(9),
     date_of_mobileT date NOT NULL,
-    amount numeric(10,2) NOT NULL,
+    amount numeric(12,2) NOT NULL,
     agent_ID int(9) NOT NULL,
     PRIMARY KEY(mobileT_ID)
 );
@@ -54,7 +54,7 @@ create table mobileT(
 create table account(
 	account_ID int(9),
     acc_type_ID int(2),
-    balance numeric(10,2),
+    balance numeric(12,2),
     PRIMARY KEY(account_ID),
     FOREIGN KEY (acc_type_ID) REFERENCES account_type(acc_type_ID)
 );
@@ -113,7 +113,7 @@ create table makes_mobileT(
 create table contact_no(
 	customer_ID int(9),
     mobile_no int(10) NOT NULL,
-    PRIMARY KEY(customer_ID),
+    PRIMARY KEY(customer_ID,mobile_no),
     FOREIGN KEY(customer_ID) REFERENCES users(customer_ID)
 );
 

@@ -27,7 +27,7 @@ public class homeApiService extends BaseApiService {
 	@Produces(MediaType.APPLICATION_JSON)
 	
 	public Response authorizationService(
-			@HeaderParam("username") String userName,
+			@HeaderParam("MBA_ID") String MBA_ID,
 			@HeaderParam("password") String password) throws JSONException, SQLException {
 		
 		AuthenticationResponse ar = new AuthenticationResponse();
@@ -38,8 +38,8 @@ public class homeApiService extends BaseApiService {
 		 * Check whether the userName filed is empty in the message
 		 * throw error : "authorized unsuccessfully. username is empty"
 		 */
-		if(userName.isEmpty()) {
-			return ar.errorNoUSERNAME();
+		if(MBA_ID.isEmpty()) {
+			return ar.errorNoMBA_ID();
 		}
 		
 		/*
@@ -54,7 +54,7 @@ public class homeApiService extends BaseApiService {
 		 * Check whether the userName and Password is correct 
 		 * throw error : "authorized unsuccessfully. password incorrect"
 		 */
-		int customer_ID = auth.validateUnsuccessfull(userName, password);
+		int customer_ID = auth.validateUnsuccessfull(MBA_ID, password);
 		//System.out.println(customer_ID);
 		
 		if( customer_ID == 0) {
@@ -66,7 +66,7 @@ public class homeApiService extends BaseApiService {
 		 * Successful connection
 		 * return - private key
 		 */
-		String privateKey = JwTokenHelper.getInstance().generatePrivateKey(userName,password);      
+		String privateKey = JwTokenHelper.getInstance().generatePrivateKey(MBA_ID,password);      
 		return ar.success(privateKey);
 	}
 	
@@ -92,7 +92,7 @@ public class homeApiService extends BaseApiService {
 				.type(MediaType.APPLICATION_JSON)
 				.entity(obj)
 				.build();
-	}
+	} 
   
 	
 	

@@ -15,10 +15,11 @@ public class AuthenticationResponse {
 		
 	}
 
-	public  Response errorNoUSERNAME() {
+	public  Response errorNoMBA_ID() {
 		try {
 			auth_response.put("error", "authorized unsuccessfully");
-			auth_response.put("possible reason", "username is empty");
+			auth_response.put("possible reason", 
+					"Mobile Banking Accont ID is empty");
 		} catch (JSONException e) {
 			
 			e.printStackTrace();

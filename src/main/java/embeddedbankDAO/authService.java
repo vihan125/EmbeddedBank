@@ -12,17 +12,17 @@ public class authService {
 		stmt = databaseConnection.connect().createStatement();
 	}
 	
-	public int validateUnsuccessfull(String username, String password){
+	public int validateUnsuccessfull(String MBA_ID, String password){
 		
 		
 		try {
-			rs= stmt.executeQuery("select * from users where username=\"" + username + "\"and pass=\"" + password+"\";");
+			rs= stmt.executeQuery("select * from mobile_banking_account where MBA_ID=\"" + MBA_ID + "\"and password=\"" + password+"\";");
 			
 			if (rs.next() == false) { 
 				return 0;
 				
 			} else { 
-				return rs.getInt("ID");
+				return rs.getInt("Customer_ID");
 			}
 				
 		} catch (SQLException e) {
