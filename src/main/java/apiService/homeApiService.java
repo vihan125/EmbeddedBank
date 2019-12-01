@@ -93,5 +93,30 @@ public class homeApiService extends BaseApiService {
 				.entity(obj)
 				.build();
 	}
+  
+	
+	
+	@POST
+	@Path("mDeposit")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response mobileDeposit() {
+		System.out.println("mobile deposit called");
+	      JSONObject obj = new JSONObject();
+	      
 
+	      try {
+	    	  obj.put("hello", "world");
+	    	  obj.put("nigga", "world");
+	    	  obj.put("bla bla", "world");
+	      
+	      	} catch (JSONException e) {
+			
+	      		// TODO Auto-generated catch block
+	      		e.printStackTrace();
+	      	}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+	}
 }
