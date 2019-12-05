@@ -3,6 +3,7 @@ package apiService;
 
 import java.sql.SQLException;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -25,10 +26,9 @@ public class homeApiService extends BaseApiService {
 	@POST
 	@Path(value="auth")
 	@Produces(MediaType.APPLICATION_JSON)
-	
 	public Response authorizationService(
-			@HeaderParam("MBA_ID") String MBA_ID,
-			@HeaderParam("password") String password) throws JSONException, SQLException {
+			@DefaultValue("") @HeaderParam("MBA_ID") String MBA_ID,
+			@DefaultValue("") @HeaderParam("password") String password) throws JSONException, SQLException, ClassNotFoundException, IllegalAccessException {
 		
 		AuthenticationResponse ar = new AuthenticationResponse();
 	    authService auth = new authService();
@@ -38,7 +38,7 @@ public class homeApiService extends BaseApiService {
 		 * Check whether the userName filed is empty in the message
 		 * throw error : "authorized unsuccessfully. username is empty"
 		 */
-		if(MBA_ID.isEmpty()) {
+		if(MBA_ID.isEmpty() || MBA_ID == "") {
 			return ar.errorNoMBA_ID();
 		}
 		
@@ -46,7 +46,7 @@ public class homeApiService extends BaseApiService {
 		 * Check whether the Password filed is empty in the message
 		 * throw error : "authorized unsuccessfully. password is empty"
 		 */
-		else if(password.isEmpty()) {
+		else if(password.isEmpty() || password == null) {
 			return ar.errorNoPASSWORD();
 		}
 		
@@ -54,7 +54,7 @@ public class homeApiService extends BaseApiService {
 		 * Check whether the userName and Password is correct 
 		 * throw error : "authorized unsuccessfully. password incorrect"
 		 */
-		int customer_ID = auth.validateUnsuccessfull(MBA_ID, password);
+		int customer_ID = auth.validateUsingFunction(MBA_ID, password);
 		//System.out.println(customer_ID);
 		
 		if( customer_ID == 0) {
@@ -69,6 +69,7 @@ public class homeApiService extends BaseApiService {
 		String privateKey = JwTokenHelper.getInstance().generatePrivateKey(MBA_ID,password);      
 		return ar.success(privateKey);
 	}
+	
 	
 	@GET
 	@Path("allDevices")
