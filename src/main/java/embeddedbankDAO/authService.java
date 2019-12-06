@@ -14,9 +14,6 @@ import java.sql.Types;
 
 public class authService {
 	
-
-	
-	
 	public authService() throws ClassNotFoundException, IllegalAccessException 
 	{
 	}

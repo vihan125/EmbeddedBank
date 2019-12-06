@@ -32,11 +32,10 @@ public class homeApiService extends BaseApiService {
 		
 		AuthenticationResponse ar = new AuthenticationResponse();
 	    authService auth = new authService();
-	    //System.out.println(userName);
-	    //System.out.println(password);
+	    
 		/*
 		 * Check whether the userName filed is empty in the message
-		 * throw error : "authorized unsuccessfully. username is empty"
+		 * throw error : "authorized unsuccessfully. user name is empty"
 		 */
 		if(MBA_ID.isEmpty() || MBA_ID == "") {
 			return ar.errorNoMBA_ID();
