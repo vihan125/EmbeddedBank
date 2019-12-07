@@ -1,5 +1,5 @@
 create table users(
-	customer_ID int(9),
+	customer_ID int(9) auto_increment,
     Email varchar(100),
     date_of_birth date NOT NULL,
     first_name varchar(30) NOT NULL,
@@ -8,21 +8,21 @@ create table users(
 );
 
 create table mobile_unit(
-	MU_ID int(9),
+	MU_ID int(9) auto_increment,
     agent_ID int(9) NOT NULL,
     balance numeric(12,2),
     PRIMARY KEY(MU_ID)
 );
 
 create table FD_type(
-	FD_type_ID int(2),
+	FD_type_ID int(2) auto_increment,
     interest_rate numeric(5,2) NOT NULL,
     name varchar(20),
     PRIMARY KEY(FD_type_ID)
 );
 
 create table account_type(
-	acc_type_ID int(2),
+	acc_type_ID int(2) auto_increment,
     interest_rate numeric(5,2) NOT NULL,
     minimum_balance numeric(6,2) NOT NULL,
     name varchar(20),
@@ -30,21 +30,21 @@ create table account_type(
 );
 
 create table deposits(
-	deposit_ID int(9),
+	deposit_ID int(9) auto_increment,
     date_of_deposit date NOT NULL,
     amount numeric(12,2) NOT NULL,
     PRIMARY KEY(deposit_ID)
 );
 
 create table withdrawls(
-	withdrawl_ID int(9),
+	withdrawl_ID int(9) auto_increment,
     date_of_withdrawl date NOT NULL,
     amount numeric(12,2) NOT NULL,
     PRIMARY KEY(withdrawl_ID)
 );
 
 create table mobileT(
-	mobileT_ID int(9),
+	mobileT_ID int(9) auto_increment,
     date_of_mobileT date NOT NULL,
     amount numeric(12,2) NOT NULL,
     agent_ID int(9) NOT NULL,
@@ -52,7 +52,7 @@ create table mobileT(
 );
 
 create table account(
-	account_ID int(9),
+	account_ID int(9) auto_increment,
     acc_type_ID int(2),
     balance numeric(12,2),
     PRIMARY KEY(account_ID),
@@ -60,15 +60,15 @@ create table account(
 );
 
 create table own_by(
-	account_ID int(9),
-    customer_ID int(9),
+	account_ID int(9) ,
+    customer_ID int(9) ,
     PRIMARY KEY(account_ID,customer_ID),
     FOREIGN KEY(account_ID) REFERENCES account(account_ID),
     FOREIGN KEY(customer_ID) REFERENCES users(customer_ID)
 );
 
 create table mobile_banking_account(
-	MBA_ID int(9),
+	MBA_ID int(9) auto_increment,
     customer_ID int(9),
     MU_ID int(9),
     password varchar(40) NOT NULL ,
@@ -78,7 +78,7 @@ create table mobile_banking_account(
 );
 
 create table fixed_deposit(
-	FD_ID int(9),
+	FD_ID int(9) auto_increment,
     account_ID int(9),
     FD_type_ID int(2),
     PRIMARY KEY(FD_ID),
