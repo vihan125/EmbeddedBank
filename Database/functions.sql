@@ -1,3 +1,62 @@
+/*
+ *  
+ * Make withdrawal for mobile account procedure 
+ * 
+ * 
+ * */
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileWithdrawal`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_withdrawl_arg` DATE, in `agent_ID_arg` int(9))
+    MODIFIES SQL DATA
+BEGIN
+ DECLARE balance_arg decimal(12,2);
+ DECLARE withdrawl_ID_arg int(9);
+ DECLARE balance_of_device_arg decimal(12,2);
+/* BEGIN TRAN */
+
+ START TRANSACTION; 
+/* get the current balance from the account to balance_arg variable */
+ SELECT balance INTO balance_arg from account where account_ID = account_ID_arg;
+ 
+ /* update the value */
+ SELECT balance_arg - amount_arg into balance_arg ;
+ 
+/* get the current balance from the mobile unit to balance_arg variable */
+ SELECT balance INTO balance_of_device_arg from mobile_unit where MU_ID = MU_ID_arg;
+ 
+ /* update the value */
+ SELECT balance_arg + amount_arg into balance_of_device_arg ;
+ 
+ 
+ /* proceed only if value can be redeemed*/
+ IF balance_arg >=0 THEN
+ IF balance_of_device_arg >=0 THEN
+ /* update the table to new value */
+ UPDATE account set balance = balance_arg where account_ID = account_ID_arg;
+ 
+ /* insert the data to withdrawal table */
+ INSERT into mobilet(date_of_withdrawl,amount,agent_ID) values(date_of_withdrawl_arg, amount_arg,agent_ID_arg);
+ 
+ /* get the primary key from withdrawal table to withdrawl_ID_arg*/
+ SET withdrawl_ID_arg = LAST_INSERT_ID();
+ 
+ /* insert account_Id and withdrawl_ID_arg to the make withdrawal table */
+ INSERT into makes_mobilet values(account_ID_arg, withdrawl_ID_arg);
+ 
+  
+ /* update the table to new value */
+ UPDATE mobile_unit set balance = balance_of_device_arg where MU_ID = MU_ID_arg;
+ 
+ 
+ COMMIT;
+
+END IF;
+END IF;
+END$$
+DELIMITER ;
+
+
+
+
 
 /*
  *  
@@ -7,7 +66,7 @@
  * */
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileDeposit`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_deposit_arg` DATE,IN `agent_ID_arg` INT(9) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileDeposit`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_deposit_arg` DATE, IN `agent_ID_arg` INT(9), IN `MU_ID_arg` INT(9))
     MODIFIES SQL DATA
 BEGIN
  DECLARE balance_arg decimal(12,2);
@@ -33,6 +92,19 @@ BEGIN
  
  /* insert account_Id and deposit_ID_arg to the make deposits table */
  INSERT into makes_mobilet values(account_ID_arg, deposit_ID_arg);
+ 
+ 
+ /* get the current balance from the mobile unit to balance_arg variable */
+ SELECT balance INTO balance_arg from mobile_unit where MU_ID = MU_ID_arg;
+ 
+ /* update the value */
+ SELECT balance_arg + amount_arg into balance_arg ;
+ 
+ /* update the table to new value */
+ UPDATE mobile_unit set balance = balance_arg where MU_ID = MU_ID_arg;
+ 
+ 
+ 
  COMMIT;
 
 END$$
