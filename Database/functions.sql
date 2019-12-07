@@ -1,3 +1,45 @@
+
+/*
+ *  
+ * Make deposits for mobile account procedure 
+ * 
+ * 
+ * */
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileDeposit`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_deposit_arg` DATE,IN `agent_ID_arg` INT(9) )
+    MODIFIES SQL DATA
+BEGIN
+ DECLARE balance_arg decimal(12,2);
+ DECLARE deposit_ID_arg int(9);
+
+/* BEGIN TRAN */
+
+ START TRANSACTION; 
+/* get the current balance from the account to balance_arg variable */
+ SELECT balance INTO balance_arg from account where account_ID = account_ID_arg;
+ 
+ /* update the value */
+ SELECT balance_arg + amount_arg into balance_arg ;
+ 
+ /* update the table to new value */
+ UPDATE account set balance = balance_arg where account_ID = account_ID_arg;
+ 
+ /* insert the data to deposits table */
+ INSERT into mobilet(date_of_mobileT,amount,agent_ID) values(date_of_deposit_arg, amount_arg,agent_ID_arg);
+ 
+ /* get the primary key from deposits table to deposit_ID_arg*/
+ SET deposit_ID_arg = LAST_INSERT_ID();
+ 
+ /* insert account_Id and deposit_ID_arg to the make deposits table */
+ INSERT into makes_mobilet values(account_ID_arg, deposit_ID_arg);
+ COMMIT;
+
+END$$
+DELIMITER ;
+
+
+
 /* 
  * add new mobile Account 
  * 
