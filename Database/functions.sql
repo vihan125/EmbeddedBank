@@ -1,14 +1,34 @@
-DELIMITER //
+/* 
+ * add new mobile Account 
+ * 
+ * This function is created to retrieve data using Mobile banking account id and password 
+ * 
+ */
 
-CREATE FUNCTION getAccount(MBA_ID_arg int(9),password_arg varchar(40)) RETURNS int(9)
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addMA`(`customer_ID_arg` INT(9), MU_ID_arg int(9),`password_arg` VARCHAR(40))
+BEGIN
+
+	INSERT INTO mobile_banking_account VALUES (customer_ID_arg,MU_ID_arg,password_arg);
+ 
+END$$
+DELIMITER ;
+
+
+
+/* 
+ * get Mobile Account function
+ * 
+ * This function is created to retrieve data using Mobile banking account id and password 
+ * 
+ */
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMA`(`customer_ID_arg` INT(9), `password_arg` VARCHAR(40)) RETURNS int(9)
 BEGIN
  DECLARE customerID int(9);
-  Select customer_ID from mobile_banking_account where MBA_ID=MBA_ID_arg and password= password_arg into customerID;
+  Select customer_ID from mobile_banking_account where customer_ID=customer_ID_arg and password= password_arg into customerID;
   RETURN customerID;
-END 
-
-//
-
+END$$
 DELIMITER ;
 
 
@@ -115,8 +135,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addUser`(Email varchar(100), date_o
     MODIFIES SQL DATA
 BEGIN
 
-
-
  START TRANSACTION; 
  	Insert into users(Email,date_of_birth,first_name,last_name) values (Email,date_of_birth,first_name,last_name);
  COMMIT;
@@ -148,9 +166,11 @@ BEGIN
 
  START TRANSACTION; 
 	
-    
-insert into account(acc_type_ID,balance) values (account_type,initial_deposit);
-SET account_ID_arg = LAST_INSERT_ID();
+ /* insert the data to account table */   
+ insert into account(acc_type_ID,balance) values (account_type,initial_deposit);
+ 
+ /* get the account_ID. we have to use this method since the ID is auto generated*/
+ SET account_ID_arg = LAST_INSERT_ID();
     
  /* insert the data to deposits table */
  INSERT into deposits(date_of_deposit,amount) values(date_created, initial_deposit);
