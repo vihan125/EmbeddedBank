@@ -1,6 +1,7 @@
 package DAO;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -14,14 +15,14 @@ import model2.FixedDeposit;
 public interface FixedDepositDAO {
 	
 	
-	public void addFixedDeposit(FixedDeposit fd);
+	public void addFixedDeposit(FixedDeposit fd) throws SQLException;
 	
-	public FixedDeposit getFixedDeposit (int fdId);
+	public FixedDeposit getFixedDeposit (int fdId) throws SQLException;
 	
-	public void removeFixedDeposit(FixedDeposit fd);
+	public void removeFixedDeposit(int fd) throws SQLException;
 	
-	public void updateFixedDeposit(FixedDeposit fd);
+	public void updateFixedDeposit(FixedDeposit fd) throws SQLException;
 	
-	public List<FixedDeposit> getDepositList();
+	public List<FixedDeposit> getDepositList() throws SQLException;
 
 }

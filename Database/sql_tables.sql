@@ -48,8 +48,12 @@ create table mobileT(
     date_of_mobileT date NOT NULL,
     amount numeric(12,2) NOT NULL,
     agent_ID int(9) NOT NULL,
+    dep_with char(1) NOT NULL, -- deposit or withdrawl
     PRIMARY KEY(mobileT_ID)
 );
+
+
+
 
 create table account(
 	account_ID int(9) auto_increment,

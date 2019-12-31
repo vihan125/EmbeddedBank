@@ -5,11 +5,20 @@ package model2;
 public class FixedDeposit{
 
 	private int fdId;
-	private Account account;
-	private FdType fdType;
+	private int account_ID;
+	private int fdType;
 
 	public FixedDeposit() {
 	}
+
+	
+	public FixedDeposit(int fdId, int account_ID, int fdType) {
+		super();
+		this.fdId = fdId;
+		this.account_ID = account_ID;
+		this.fdType = fdType;
+	}
+
 
 	public int getFdId() {
 		return this.fdId;
@@ -19,19 +28,19 @@ public class FixedDeposit{
 		this.fdId = fdId;
 	}
 
-	public Account getAccount() {
-		return this.account;
+	public int getAccount() {
+		return this.account_ID;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccount(int account) {
+		this.account_ID = account;
 	}
 
-	public FdType getFdType() {
+	public int getFdType() {
 		return this.fdType;
 	}
 
-	public void setFdType(FdType fdType) {
+	public void setFdType(int fdType) {
 		this.fdType = fdType;
 	}
 

@@ -7,6 +7,8 @@ import DAO.MobileTDAO;
 import model2.Mobilet;
 
 public class SqlMobileTDAO implements MobileTDAO {
+	
+	
 
 	public void addMobilet(Mobilet deposit) {
 	}
