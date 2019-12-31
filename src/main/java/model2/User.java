@@ -1,6 +1,6 @@
 package model2;
 
-import java.util.Date;
+import java.sql.Date;
 
 
 public class User {
@@ -13,6 +13,19 @@ public class User {
 
 	public User() {
 	}
+	
+	
+
+	public User(int customer_ID, Date dateOfBirth, String email, String firstName, String lastName) {
+		super();
+		this.customer_ID = customer_ID;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+
 
 	public int getCustomer_ID() {
 		return this.customer_ID;
@@ -54,5 +67,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	@Override
+	public String toString() {
+		return "User [customer_ID=" + customer_ID + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", firstName="
+				+ firstName + ", lastName=" + lastName + "]";
+	}
+
+	
 
 }

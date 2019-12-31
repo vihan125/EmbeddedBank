@@ -13,10 +13,10 @@ public interface AccountTypeDAO {
 	
 	public AccountType getAccountType (int acc_type_ID) throws SQLException;
 	
-	public void removeAccountType(int acc_type_ID);
+	public void removeAccountType(int acc_type_ID) throws SQLException;
 	
-	public void updateAccountType(AccountType act);
+	public void updateAccountType(AccountType act) throws SQLException;
 	
-	public List<AccountType> getAccountTypeList();
+	public List<AccountType> getAccountTypeList() throws SQLException;
 
 }

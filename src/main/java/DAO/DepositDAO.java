@@ -1,6 +1,7 @@
 package DAO;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -13,15 +14,14 @@ import model2.Deposit;
  */
 public interface DepositDAO {
 	
+	public void addDeposit(Deposit deposit, int account_ID) throws SQLException;
 	
-	public void addDeposit(Deposit deposit);
+	public Deposit getDeposit (int deposit_ID) throws SQLException;
 	
-	public Deposit getDeposit (int deposit_ID);
+	public void removeDeposit(int deposit_ID) throws SQLException;
 	
-	public void removeDeposit(int deposit_ID);
+	public void updateBalance(Deposit deposit) throws SQLException;
 	
-	public void updateBalance(Deposit deposit, BigDecimal amount );
-	
-	public List<Deposit > getDepositList();
+	public List<Deposit > getDepositList() throws SQLException;
 
 }
