@@ -1,17 +1,49 @@
 package model2;
 
 
-import java.math.BigDecimal;
+
 
 
 public class Account{
 
-	
+	private int user_ID;
 	private int account_ID;
-	private BigDecimal balance;
+	private long balance;
 	private AccountType accountType;
 
 	public Account() {
+	}
+	
+
+	public int getUser_ID() {
+		return user_ID;
+	}
+
+	public void setUser_ID(int user_ID) {
+		this.user_ID = user_ID;
+	}
+	
+	public Account(int user_ID,int account_ID,long balance, AccountType accountType) {
+		super();
+		this.account_ID = account_ID;
+		this.user_ID = user_ID;
+		this.balance = balance;
+		this.accountType = accountType;
+	}
+
+	
+	
+	public Account(int user_ID,long balance, AccountType accountType) {
+		super();
+		this.user_ID = user_ID;
+		this.balance = balance;
+		this.accountType = accountType;
+	}
+	
+	public Account(long balance, AccountType accountType) {
+		super();
+		this.balance = balance;
+		this.accountType = accountType;
 	}
 
 	public int getAccount_ID() {
@@ -22,11 +54,11 @@ public class Account{
 		this.account_ID = account_ID;
 	}
 
-	public BigDecimal getBalance() {
+	public long getBalance() {
 		return this.balance;
 	}
 
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(long balance) {
 		this.balance = balance;
 	}
 
@@ -36,6 +68,13 @@ public class Account{
 
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Account [user_ID=" + user_ID + ", account_ID=" + account_ID + ", balance=" + balance + ", accountType="
+				+ accountType + "]";
 	}
 
 }

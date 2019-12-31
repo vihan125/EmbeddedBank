@@ -1,18 +1,32 @@
 package model2;
 
 
-import java.math.BigDecimal;
 
 
 public class AccountType {
 	
 	private int acc_type_ID;
-	private BigDecimal interestRate;
-	private BigDecimal minimumBalance;
+	private int interestRate;
+	private int minimumBalance;
 	private String name;
 
 	public AccountType() {
 	}
+
+	public AccountType(int acc_type_ID,int interestRate, int minimumBalance, String name) {
+		this.acc_type_ID = acc_type_ID;
+		this.interestRate = interestRate;
+		this.minimumBalance = minimumBalance;
+		this.name = name;
+	}
+
+	public AccountType(int interestRate, int minimumBalance, String name) {
+		this.interestRate = interestRate;
+		this.minimumBalance = minimumBalance;
+		this.name = name;
+	}
+
+
 
 	public int getAcc_type_ID() {
 		return this.acc_type_ID;
@@ -22,19 +36,19 @@ public class AccountType {
 		this.acc_type_ID = acc_type_ID;
 	}
 
-	public BigDecimal getInterestRate() {
+	public int getInterestRate() {
 		return this.interestRate;
 	}
 
-	public void setInterestRate(BigDecimal interestRate) {
+	public void setInterestRate(int interestRate) {
 		this.interestRate = interestRate;
 	}
 
-	public BigDecimal getMinimumBalance() {
+	public int getMinimumBalance() {
 		return this.minimumBalance;
 	}
 
-	public void setMinimumBalance(BigDecimal minimumBalance) {
+	public void setMinimumBalance(int minimumBalance) {
 		this.minimumBalance = minimumBalance;
 	}
 
@@ -45,5 +59,12 @@ public class AccountType {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "AccountType [acc_type_ID=" + acc_type_ID + ", interestRate=" + interestRate + ", minimumBalance="
+				+ minimumBalance + ", name=" + name + "]";
+	}
+	
 
 }

@@ -1,6 +1,7 @@
 package DAO;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.List;
 
 import model2.Account;
@@ -13,14 +14,14 @@ import model2.Account;
 public interface AccountDAO {
 	
 	
-	public void addAccount(Account account);
+	public void addAccount(Account account) throws SQLException;
 	
-	public Account getAccount(int account_ID);
+	public Account getAccount(int account_ID) throws SQLException;
 	
-	public void removeAccount(Account account);
+	public void removeAccount(int account_ID) throws SQLException;
 	
-	public void updateBalance(Account account, BigDecimal balance );
+	public void updateBalance(Account account) throws SQLException;
 	
-	public List<Account> getAccountList();
+	public List<Account> getAccountList() throws SQLException;
 
 }

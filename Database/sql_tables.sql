@@ -56,15 +56,15 @@ create table account(
     acc_type_ID int(2),
     balance numeric(12,2),
     PRIMARY KEY(account_ID),
-    FOREIGN KEY (acc_type_ID) REFERENCES account_type(acc_type_ID)
+    FOREIGN KEY (acc_type_ID) REFERENCES account_type(acc_type_ID) ON DELETE CASCADE
 );
 
 create table own_by(
 	account_ID int(9) ,
     customer_ID int(9) ,
     PRIMARY KEY(account_ID,customer_ID),
-    FOREIGN KEY(account_ID) REFERENCES account(account_ID),
-    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID)
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
 
 create table mobile_banking_account(
@@ -73,8 +73,8 @@ create table mobile_banking_account(
     MU_ID int(9),
     password varchar(40) NOT NULL ,
     PRIMARY KEY(MBA_ID),
-    FOREIGN KEY(MU_ID) REFERENCES mobile_unit(MU_ID),
-    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID)
+    FOREIGN KEY(MU_ID) REFERENCES mobile_unit(MU_ID) ON DELETE CASCADE,
+    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
 
 create table fixed_deposit(
@@ -82,38 +82,38 @@ create table fixed_deposit(
     account_ID int(9),
     FD_type_ID int(2),
     PRIMARY KEY(FD_ID),
-    FOREIGN KEY(account_ID) REFERENCES account(account_ID),
-    FOREIGN KEY(FD_type_ID) REFERENCES FD_type(FD_type_ID)
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(FD_type_ID) REFERENCES FD_type(FD_type_ID) ON DELETE CASCADE
 );
 
 create table makes_deposit(
 	account_ID int(9),
     deposit_ID int(9),
     PRIMARY KEY(account_ID,deposit_ID),
-    FOREIGN KEY(account_ID) REFERENCES account(account_ID),
-    FOREIGN KEY(deposit_ID) REFERENCES deposits(deposit_ID)
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(deposit_ID) REFERENCES deposits(deposit_ID) ON DELETE CASCADE
 );
 
 create table makes_withdrawl(
 	account_ID int(9),
     withdrawl_ID int(9),
     PRIMARY KEY(account_ID,withdrawl_ID),
-    FOREIGN KEY(account_ID) REFERENCES account(account_ID),
-    FOREIGN KEY(withdrawl_ID) REFERENCES withdrawls(withdrawl_ID)
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(withdrawl_ID) REFERENCES withdrawls(withdrawl_ID) ON DELETE CASCADE
 );
 
 create table makes_mobileT(
 	account_ID int(9),
     mobileT_ID int(9),
     PRIMARY KEY(account_ID,mobileT_ID),
-    FOREIGN KEY(account_ID) REFERENCES account(account_ID),
-    FOREIGN KEY(mobileT_ID) REFERENCES mobileT(mobileT_ID)
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(mobileT_ID) REFERENCES mobileT(mobileT_ID) ON DELETE CASCADE
 );
 
 create table contact_no(
 	customer_ID int(9),
     mobile_no int(10) NOT NULL,
     PRIMARY KEY(customer_ID,mobile_no),
-    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID)
+    FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
 

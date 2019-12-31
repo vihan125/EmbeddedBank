@@ -18,7 +18,6 @@ import org.codehaus.jettison.json.JSONObject;
 
 import response.AuthenticationResponse;
 import util.JwTokenHelper;
-import embeddedbankDAO.authService;
 
 @Path("/")
 public class homeApiService extends BaseApiService {
@@ -31,7 +30,7 @@ public class homeApiService extends BaseApiService {
 			@DefaultValue("") @HeaderParam("password") String password) throws JSONException, SQLException, ClassNotFoundException, IllegalAccessException {
 		
 		AuthenticationResponse ar = new AuthenticationResponse();
-	    authService auth = new authService();
+	    util.authService auth = new util.authService();
 	    
 		/*
 		 * Check whether the userName filed is empty in the message
