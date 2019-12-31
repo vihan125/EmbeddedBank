@@ -11,10 +11,10 @@ public interface UserDAO {
 	
 	public User getUser(int customer_ID) throws SQLException;
 	
-	public void removeUser(int customer_ID);
+	public void removeUser(int customer_ID) throws SQLException;
 	
-	public void updateUser(User user);
+	public void updateUser(User user) throws SQLException;
 	
-	public List<User> getUserList();
+	public List<User> getUserList() throws SQLException;
 
 }
