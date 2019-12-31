@@ -1,21 +1,20 @@
 package DAO;
 
-import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.List;
 
 import model2.MobileUnit;
-import model2.Mobilet;
 
 public interface MobileUnitDAO {
 	
-	public void addMobileUnit(MobileUnit mu);
+	public void addMobileUnit(MobileUnit mu) throws SQLException;
 	
-	public Mobilet getMobileUnit (int muId);
+	public MobileUnit getMobileUnit (int muId) throws SQLException;
 	
-	public void removeMobileUnit(int muId);
+	public void removeMobileUnit(int muId) throws SQLException;
 	
-	public void updateBalance(Mobilet mu, BigDecimal balance );
+	public void updateBalance(MobileUnit mu) throws SQLException;
 	
-	public List<MobileUnit> getMobileUnitList();
+	public List<MobileUnit> getMobileUnitList() throws SQLException;
 
 }

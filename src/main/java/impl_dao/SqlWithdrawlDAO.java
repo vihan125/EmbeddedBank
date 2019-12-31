@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.WithdrawlDAO;
-import model2.Deposit;
 import model2.Withdrawl;
 import util.databaseConnection;
 

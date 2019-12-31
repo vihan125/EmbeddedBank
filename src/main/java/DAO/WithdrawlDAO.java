@@ -2,8 +2,6 @@ package DAO;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import model2.Deposit;
 import model2.Withdrawl;
 
 public interface WithdrawlDAO {

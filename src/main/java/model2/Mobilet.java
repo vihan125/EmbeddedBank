@@ -9,7 +9,7 @@ public class Mobilet  {
 
 	private int mobileT_ID;
 	private int agent_ID;
-	private BigDecimal amount;
+	private int amount;
 	private Date date_of_mobileT;
 
 	public Mobilet() {
@@ -31,11 +31,11 @@ public class Mobilet  {
 		this.agent_ID = agent_ID;
 	}
 
-	public BigDecimal getAmount() {
+	public int getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
