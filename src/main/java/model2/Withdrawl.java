@@ -1,17 +1,23 @@
 package model2;
 
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 
 public class Withdrawl {
 	
 	private int withdrawl_ID;
-	private BigDecimal amount;
+	private int amount;
 	private Date dateOfWithdrawl;
 	
 	public Withdrawl() {
+	}
+
+	public Withdrawl(int withdrawl_ID, int amount, Date dateOfWithdrawl) {
+		super();
+		this.withdrawl_ID = withdrawl_ID;
+		this.amount = amount;
+		this.dateOfWithdrawl = dateOfWithdrawl;
 	}
 
 	public int getWithdrawl_ID() {
@@ -22,11 +28,11 @@ public class Withdrawl {
 		this.withdrawl_ID = withdrawl_ID;
 	}
 
-	public BigDecimal getAmount() {
+	public int getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
