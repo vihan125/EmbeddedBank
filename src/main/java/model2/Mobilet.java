@@ -1,7 +1,6 @@
 package model2;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 
 
@@ -11,9 +10,20 @@ public class Mobilet  {
 	private int agent_ID;
 	private int amount;
 	private Date date_of_mobileT;
+	private char dep_with;
 
 	public Mobilet() {
 	}
+
+	
+	public char getDep_with() {
+		return dep_with;
+	}
+
+	public void setDep_with(char dep_with) {
+		this.dep_with = dep_with;
+	}
+
 
 	public int getMobileT_ID() {
 		return this.mobileT_ID;

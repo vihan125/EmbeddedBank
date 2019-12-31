@@ -30,7 +30,7 @@ public class SqlDepositDAO implements DepositDAO{
 	 * 
 	 * */
 	public void addDeposit(Deposit deposit, int account_ID) throws SQLException {
-		String queryString = "call makeDeposit(?,?,current_date);" ;
+		String queryString = "call makeDeposit(?,?,current_date)" ;
 		ptmt = connection.prepareStatement(queryString);
 		
 		ptmt.setInt(1, account_ID);

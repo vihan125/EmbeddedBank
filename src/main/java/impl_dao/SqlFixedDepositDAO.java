@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.FixedDepositDAO;
-import model2.AccountType;
 import model2.FixedDeposit;
 import util.databaseConnection;
 
