@@ -36,3 +36,58 @@ are as follows,
 # ERD Diagram Embedded Database
 ![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20database.png)
 
+
+# Mobile login
+Successful login
+Required parameters 
+<li>MBA_ID</li>
+<li>password</li>
+
+```
+POST /auth HTTP/1.1
+Host: localhost:6973
+MBA_ID: 2
+password: Tharaka
+Cache-Control: no-cache
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+```
+
+
+![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20auth%20successful.PNG)
+
+<br>
+unsuccessful login will return following
+
+
+![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20auth%20unsuccessful.PNG)
+
+# Mobile deposit
+```
+POST /mDeposit HTTP/1.1
+Host: localhost:6973
+agent_ID: 123
+privatekey: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUaGFyYWthIiwiZXhwIjoxNTc3ODUzODAzfQ.-ld0neya6a1rNzVOtMLQcVImy2kbbrhUPJ67EU8K3Ms"
+amount: 3000
+account_ID: 1
+MU_ID: 1
+Cache-Control: no-cache
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+```
+![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20deposit.PNG)
+
+# Mobile withdrawal
+
+```
+POST /mWithdrawal HTTP/1.1
+Host: localhost:6973
+agent_ID: 123
+privatekey: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUaGFyYWthIiwiZXhwIjoxNTc3ODUzODAzfQ.-ld0neya6a1rNzVOtMLQcVImy2kbbrhUPJ67EU8K3Ms"
+amount: 3000
+account_ID: 1
+MU_ID: 1
+Cache-Control: no-cache
+Postman-Token: 2df7bc2c-ba92-64cb-4610-6d9e971ec7b2
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+```
+
+![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20withdrawal.PNG)
