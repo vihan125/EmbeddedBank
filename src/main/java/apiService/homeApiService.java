@@ -146,7 +146,6 @@ public class homeApiService extends BaseApiService {
 		      
 		     }catch (JSONException e) {
 				
-		      	// TODO Auto-generated catch block
 		      	 e.printStackTrace();
 		     }
 			
@@ -155,12 +154,9 @@ public class homeApiService extends BaseApiService {
 		catch (SQLException e1) {
 			
 			e1.printStackTrace();
-			
-
 		     try {
 		    	 obj.put("report", "unsuccessful transaction. please try again");
-		    	 
-		      
+		 		      
 		     }catch (JSONException e) {
 				
 		      	// TODO Auto-generated catch block
@@ -237,15 +233,11 @@ public class homeApiService extends BaseApiService {
 		catch (SQLException e1) {
 			
 			e1.printStackTrace();
-			
-
 		     try {
 		    	 obj.put("report", "unsuccessful transaction. please try again");
-		    	 
-		      
+		
 		     }catch (JSONException e) {
 				
-		      	// TODO Auto-generated catch block
 		      	 e.printStackTrace();
 		     }
 		}
