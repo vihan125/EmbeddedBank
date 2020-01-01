@@ -57,6 +57,8 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 
 <br>
 unsuccessful login will return following
+
+
 ![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20auth%20unsuccessful.PNG)
 
 # Mobile deposit
