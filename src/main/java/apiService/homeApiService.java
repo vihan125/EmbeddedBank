@@ -16,6 +16,12 @@ import javax.ws.rs.core.Response;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import DAO.AccountDAO;
+import DAO.MobileTDAO;
+import impl_dao.SqlAccountDAO;
+import impl_dao.SqlMobileTDAO;
+import model2.Account;
+import model2.Mobilet;
 import response.AuthenticationResponse;
 import util.JwTokenHelper;
 
@@ -70,17 +76,14 @@ public class homeApiService extends BaseApiService {
 	
 	
 	@GET
-	@Path("allDevices")
+	@Path("ping")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllDevices() {
-		System.out.println("Method called");
 	      JSONObject obj = new JSONObject();
 	      
 
 	      try {
-	    	  obj.put("hello", "world");
-	    	  obj.put("nigga", "world");
-	    	  obj.put("bla bla", "world");
+	    	  obj.put("status", "server alive");
 	      
 	      	} catch (JSONException e) {
 			
@@ -98,24 +101,160 @@ public class homeApiService extends BaseApiService {
 	@POST
 	@Path("mDeposit")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response mobileDeposit() {
-		System.out.println("mobile deposit called");
-	      JSONObject obj = new JSONObject();
-	      
-
-	      try {
-	    	  obj.put("hello", "world");
-	    	  obj.put("nigga", "world");
-	    	  obj.put("bla bla", "world");
-	      
-	      	} catch (JSONException e) {
+	public Response mobileDeposit(
+			@DefaultValue("") @HeaderParam("agent_ID") String agent_ID_arg,
+			@DefaultValue("") @HeaderParam("amount") String amount_arg,
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg,
+			@DefaultValue("") @HeaderParam("MU_ID") String MU_ID_arg)  {
+		//System.out.println("mobile deposit called");
+	     JSONObject obj = new JSONObject();
+	     
+			/*
+			 *  call mobile deposit functionality
+			 * 
+			 * */
+	 	System.out.println(Integer.parseInt((agent_ID_arg)));
+	 	System.out.println(Integer.parseInt((amount_arg)));
+	 	System.out.println(Integer.parseInt((account_ID_arg)));
+	 	System.out.println(Integer.parseInt((MU_ID_arg)));
+	    int agent_ID = Integer.parseInt(agent_ID_arg);
+	    int amount = Integer.parseInt(amount_arg);
+	    int account_ID = Integer.parseInt(account_ID_arg);
+	    int MU_ID = Integer.parseInt(MU_ID_arg);
+	    
+	    
+		MobileTDAO accountManager = new SqlMobileTDAO();
+		Mobilet at = new Mobilet();
+		at.setAgent_ID(agent_ID);
+		at.setAmount(amount);
+		at.setDep_with('D');
+		at.setMU_ID(MU_ID);
+		
+		try {
+			accountManager.addMobilet(at, 'D', account_ID);
 			
-	      		// TODO Auto-generated catch block
-	      		e.printStackTrace();
-	      	}
+			AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+			Account user = check_balance_Manager.getAccount(account_ID);
+		    long balance = user.getBalance(); 
+		    
+
+		     try {
+		    	 obj.put("report", "successful transaction");
+		    	 obj.put("account_ID", Integer.toString(account_ID));
+		    	 obj.put("balance", Long.toString(balance));
+		    	 
+		      
+		     }catch (JSONException e) {
+				
+		      	// TODO Auto-generated catch block
+		      	 e.printStackTrace();
+		     }
+			
+		    
+		}
+		catch (SQLException e1) {
+			
+			e1.printStackTrace();
+			
+
+		     try {
+		    	 obj.put("report", "unsuccessful transaction. please try again");
+		    	 
+		      
+		     }catch (JSONException e) {
+				
+		      	// TODO Auto-generated catch block
+		      	 e.printStackTrace();
+		     }
+		}
 		return Response.ok()
 				.type(MediaType.APPLICATION_JSON)
 				.entity(obj)
 				.build();
+			
+		
+
+	}
+	
+	
+	
+	
+
+	@POST
+	@Path("mWithdrawal")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response mobileWithdrawl(
+			@DefaultValue("") @HeaderParam("agent_ID") String agent_ID_arg,
+			@DefaultValue("") @HeaderParam("amount") String amount_arg,
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg,
+			@DefaultValue("") @HeaderParam("MU_ID") String MU_ID_arg)  {
+		//System.out.println("mobile deposit called");
+	     JSONObject obj = new JSONObject();
+	     
+			/*
+			 *  call mobile deposit functionality
+			 * 
+			 * */
+	 	System.out.println(Integer.parseInt((agent_ID_arg)));
+	 	System.out.println(Integer.parseInt((amount_arg)));
+	 	System.out.println(Integer.parseInt((account_ID_arg)));
+	 	System.out.println(Integer.parseInt((MU_ID_arg)));
+	    int agent_ID = Integer.parseInt(agent_ID_arg);
+	    int amount = Integer.parseInt(amount_arg);
+	    int account_ID = Integer.parseInt(account_ID_arg);
+	    int MU_ID = Integer.parseInt(MU_ID_arg);
+	    
+	    
+		MobileTDAO accountManager = new SqlMobileTDAO();
+		Mobilet at = new Mobilet();
+		at.setAgent_ID(agent_ID);
+		at.setAmount(amount);
+		at.setDep_with('W');
+		at.setMU_ID(MU_ID);
+		
+		try {
+			accountManager.addMobilet(at, 'W', account_ID);
+			
+			AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+			Account user = check_balance_Manager.getAccount(account_ID);
+		    long balance = user.getBalance(); 
+		    
+
+		     try {
+		    	 obj.put("report", "successful transaction");
+		    	 obj.put("account_ID", Integer.toString(account_ID));
+		    	 obj.put("balance", Long.toString(balance));
+		    	 
+		      
+		     }catch (JSONException e) {
+				
+		      	// TODO Auto-generated catch block
+		      	 e.printStackTrace();
+		     }
+			
+		    
+		}
+		catch (SQLException e1) {
+			
+			e1.printStackTrace();
+			
+
+		     try {
+		    	 obj.put("report", "unsuccessful transaction. please try again");
+		    	 
+		      
+		     }catch (JSONException e) {
+				
+		      	// TODO Auto-generated catch block
+		      	 e.printStackTrace();
+		     }
+		}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+			
+		
+
 	}
 }

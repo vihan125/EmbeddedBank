@@ -44,7 +44,8 @@ public class authService {
 		Connection conn = databaseConnection.connect();
 	  
 	    //Preparing a CallableStatement to call a function
-	    CallableStatement cstmt = conn.prepareCall("{? = call getAccount(?,?)}");
+		//CallableStatement cstmt = conn.prepareCall("{? = call getAccount(?,?)}");
+	    CallableStatement cstmt = conn.prepareCall("{? = call getMA(?,?)}");
 	    
 	    //Registering the out parameter of the function (return type)
 	     cstmt.registerOutParameter(1, Types.INTEGER);

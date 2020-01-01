@@ -23,29 +23,29 @@ public class SqlMobileTDAO implements MobileTDAO {
 
 	public void addMobilet(Mobilet transaction, char type,int account_ID) throws SQLException {
 		
-		if(type == 'W') {
+		if(type == 'W' || type == 'w') {
 			
 			String queryString = "call makeMobileWithdrawal(?, ?, CURRENT_DATE, ?, ?)" ;
 			ptmt = connection.prepareStatement(queryString);
 			
 			ptmt.setInt(1, account_ID);
 			ptmt.setInt(2, transaction.getAmount());
-			ptmt.setInt(3, transaction.getMobileT_ID());
-			ptmt.setInt(4, transaction.getMobileT_ID());
+			ptmt.setInt(3, transaction.getAgent_ID());
+			ptmt.setInt(4, transaction.getMU_ID());
 			
 			
 			ptmt.executeUpdate();
-			System.out.println("Deposit Added Successfully for customer: "+ Integer.toString(account_ID));
+			System.out.println("Withdrawl Added Successfully for customer: "+ Integer.toString(account_ID));
 			
 			
-		}else if(type == 'C') {
+		}else if(type == 'D'|| type == 'd') {
 			String queryString = "call makeMobileDeposit(?, ?, CURRENT_DATE, ?, ?)" ;
 			ptmt = connection.prepareStatement(queryString);
 			
 			ptmt.setInt(1, account_ID);
 			ptmt.setInt(2, transaction.getAmount());
-			ptmt.setInt(3, transaction.getMobileT_ID());
-			ptmt.setInt(4, transaction.getMobileT_ID());
+			ptmt.setInt(3, transaction.getAgent_ID());
+			ptmt.setInt(4, transaction.getMU_ID());
 			
 			
 			ptmt.executeUpdate();

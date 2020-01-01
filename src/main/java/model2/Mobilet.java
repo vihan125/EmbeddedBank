@@ -11,11 +11,23 @@ public class Mobilet  {
 	private int amount;
 	private Date date_of_mobileT;
 	private char dep_with;
+	private int MU_ID;
+	
 
 	public Mobilet() {
 	}
 
 	
+	public int getMU_ID() {
+		return MU_ID;
+	}
+
+
+	public void setMU_ID(int mU_ID) {
+		MU_ID = mU_ID;
+	}
+
+
 	public char getDep_with() {
 		return dep_with;
 	}
