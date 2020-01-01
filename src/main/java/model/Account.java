@@ -1,51 +1,45 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
+public class Account{
 
-
-/**
- * The persistent class for the account database table.
- * 
- */
-@Entity
-@NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
-public class Account implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
+	private int user_ID;
 	private int account_ID;
-
-	private BigDecimal balance;
-
-	//bi-directional many-to-one association to AccountType
-	@ManyToOne
-	@JoinColumn(name="acc_type_ID")
+	private long balance;
 	private AccountType accountType;
 
-	//bi-directional many-to-one association to FixedDeposit
-	@OneToMany(mappedBy="account")
-	private List<FixedDeposit> fixedDeposits;
-
-	//bi-directional many-to-many association to Deposit
-	@ManyToMany(mappedBy="accounts")
-	private List<Deposit> deposits;
-
-	//bi-directional many-to-many association to Mobilet
-	@ManyToMany(mappedBy="accounts")
-	private List<Mobilet> mobilets;
-
-	//bi-directional many-to-many association to Withdrawl
-	@ManyToMany(mappedBy="accounts")
-	private List<Withdrawl> withdrawls;
-
-	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="accounts")
-	private List<User> users;
-
 	public Account() {
+	}
+	
+
+	public int getUser_ID() {
+		return user_ID;
+	}
+
+	public void setUser_ID(int user_ID) {
+		this.user_ID = user_ID;
+	}
+	
+	public Account(int user_ID,int account_ID,long balance, AccountType accountType) {
+		super();
+		this.account_ID = account_ID;
+		this.user_ID = user_ID;
+		this.balance = balance;
+		this.accountType = accountType;
+	}
+
+	
+	
+	public Account(int user_ID,long balance, AccountType accountType) {
+		super();
+		this.user_ID = user_ID;
+		this.balance = balance;
+		this.accountType = accountType;
+	}
+	
+	public Account(long balance, AccountType accountType) {
+		super();
+		this.balance = balance;
+		this.accountType = accountType;
 	}
 
 	public int getAccount_ID() {
@@ -56,11 +50,11 @@ public class Account implements Serializable {
 		this.account_ID = account_ID;
 	}
 
-	public BigDecimal getBalance() {
+	public long getBalance() {
 		return this.balance;
 	}
 
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(long balance) {
 		this.balance = balance;
 	}
 
@@ -72,58 +66,11 @@ public class Account implements Serializable {
 		this.accountType = accountType;
 	}
 
-	public List<FixedDeposit> getFixedDeposits() {
-		return this.fixedDeposits;
-	}
 
-	public void setFixedDeposits(List<FixedDeposit> fixedDeposits) {
-		this.fixedDeposits = fixedDeposits;
-	}
-
-	public FixedDeposit addFixedDeposit(FixedDeposit fixedDeposit) {
-		getFixedDeposits().add(fixedDeposit);
-		fixedDeposit.setAccount(this);
-
-		return fixedDeposit;
-	}
-
-	public FixedDeposit removeFixedDeposit(FixedDeposit fixedDeposit) {
-		getFixedDeposits().remove(fixedDeposit);
-		fixedDeposit.setAccount(null);
-
-		return fixedDeposit;
-	}
-
-	public List<Deposit> getDeposits() {
-		return this.deposits;
-	}
-
-	public void setDeposits(List<Deposit> deposits) {
-		this.deposits = deposits;
-	}
-
-	public List<Mobilet> getMobilets() {
-		return this.mobilets;
-	}
-
-	public void setMobilets(List<Mobilet> mobilets) {
-		this.mobilets = mobilets;
-	}
-
-	public List<Withdrawl> getWithdrawls() {
-		return this.withdrawls;
-	}
-
-	public void setWithdrawls(List<Withdrawl> withdrawls) {
-		this.withdrawls = withdrawls;
-	}
-
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
+	@Override
+	public String toString() {
+		return "Account [user_ID=" + user_ID + ", account_ID=" + account_ID + ", balance=" + balance + ", accountType="
+				+ accountType + "]";
 	}
 
 }

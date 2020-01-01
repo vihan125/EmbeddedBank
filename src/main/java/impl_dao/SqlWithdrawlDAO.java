@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.WithdrawlDAO;
-import model2.Withdrawl;
+import model.Withdrawl;
 import util.databaseConnection;
 
 public class SqlWithdrawlDAO implements WithdrawlDAO{

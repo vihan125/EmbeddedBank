@@ -3,7 +3,7 @@ package DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-import model2.AccountType;
+import model.AccountType;
 
 public interface AccountTypeDAO {
 	

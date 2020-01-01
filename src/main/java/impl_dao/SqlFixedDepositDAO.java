@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.FixedDepositDAO;
-import model2.FixedDeposit;
+import model.FixedDeposit;
 import util.databaseConnection;
 
 /**

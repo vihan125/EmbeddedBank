@@ -12,8 +12,8 @@ import java.sql.ResultSet;
 
 import DAO.AccountDAO;
 import DAO.AccountTypeDAO;
-import model2.Account;
-import model2.AccountType;
+import model.Account;
+import model.AccountType;
 import util.databaseConnection;
 
 /**

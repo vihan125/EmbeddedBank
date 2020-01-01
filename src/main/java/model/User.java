@@ -1,59 +1,31 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 
-/**
- * The persistent class for the users database table.
- * 
- */
-@Entity
-@Table(name="users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
+public class User {
+	
 	private int customer_ID;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="date_of_birth")
 	private Date dateOfBirth;
-
 	private String email;
-
-	@Column(name="first_name")
 	private String firstName;
-
-	@Column(name="last_name")
 	private String lastName;
-
-	//bi-directional many-to-one association to ContactNo
-	@OneToMany(mappedBy="user")
-	private List<ContactNo> contactNos;
-
-	//bi-directional many-to-one association to MobileBankingAccount
-	@OneToMany(mappedBy="user")
-	private List<MobileBankingAccount> mobileBankingAccounts;
-
-	//bi-directional many-to-many association to Account
-	@ManyToMany
-	@JoinTable(
-		name="own_by"
-		, joinColumns={
-			@JoinColumn(name="customer_ID")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="account_ID")
-			}
-		)
-	private List<Account> accounts;
 
 	public User() {
 	}
+	
+	
+
+	public User(int customer_ID, Date dateOfBirth, String email, String firstName, String lastName) {
+		super();
+		this.customer_ID = customer_ID;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+
 
 	public int getCustomer_ID() {
 		return this.customer_ID;
@@ -95,56 +67,12 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public List<ContactNo> getContactNos() {
-		return this.contactNos;
+	@Override
+	public String toString() {
+		return "User [customer_ID=" + customer_ID + ", dateOfBirth=" + dateOfBirth + ", email=" + email + ", firstName="
+				+ firstName + ", lastName=" + lastName + "]";
 	}
 
-	public void setContactNos(List<ContactNo> contactNos) {
-		this.contactNos = contactNos;
-	}
-
-	public ContactNo addContactNo(ContactNo contactNo) {
-		getContactNos().add(contactNo);
-		contactNo.setUser(this);
-
-		return contactNo;
-	}
-
-	public ContactNo removeContactNo(ContactNo contactNo) {
-		getContactNos().remove(contactNo);
-		contactNo.setUser(null);
-
-		return contactNo;
-	}
-
-	public List<MobileBankingAccount> getMobileBankingAccounts() {
-		return this.mobileBankingAccounts;
-	}
-
-	public void setMobileBankingAccounts(List<MobileBankingAccount> mobileBankingAccounts) {
-		this.mobileBankingAccounts = mobileBankingAccounts;
-	}
-
-	public MobileBankingAccount addMobileBankingAccount(MobileBankingAccount mobileBankingAccount) {
-		getMobileBankingAccounts().add(mobileBankingAccount);
-		mobileBankingAccount.setUser(this);
-
-		return mobileBankingAccount;
-	}
-
-	public MobileBankingAccount removeMobileBankingAccount(MobileBankingAccount mobileBankingAccount) {
-		getMobileBankingAccounts().remove(mobileBankingAccount);
-		mobileBankingAccount.setUser(null);
-
-		return mobileBankingAccount;
-	}
-
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
+	
 
 }

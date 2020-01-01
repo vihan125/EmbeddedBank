@@ -3,8 +3,7 @@ package DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-
-import model2.Deposit;
+import model.Deposit;
 
 /**
  * DepositDAO interface can be used to access the account details, 

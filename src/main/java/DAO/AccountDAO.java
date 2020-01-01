@@ -3,7 +3,7 @@ package DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-import model2.Account;
+import model.Account;
 
 /**
  * AccountDAO interface can be used to access the account details, 

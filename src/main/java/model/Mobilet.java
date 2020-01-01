@@ -1,46 +1,41 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 
-/**
- * The persistent class for the mobilet database table.
- * 
- */
-@Entity
-@NamedQuery(name="Mobilet.findAll", query="SELECT m FROM Mobilet m")
-public class Mobilet implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
+public class Mobilet  {
+
 	private int mobileT_ID;
-
 	private int agent_ID;
-
-	private BigDecimal amount;
-
-	@Temporal(TemporalType.DATE)
+	private int amount;
 	private Date date_of_mobileT;
-
-	//bi-directional many-to-many association to Account
-	@ManyToMany
-	@JoinTable(
-		name="makes_mobilet"
-		, joinColumns={
-			@JoinColumn(name="mobileT_ID")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="account_ID")
-			}
-		)
-	private List<Account> accounts;
+	private char dep_with;
+	private int MU_ID;
+	
 
 	public Mobilet() {
 	}
+
+	
+	public int getMU_ID() {
+		return MU_ID;
+	}
+
+
+	public void setMU_ID(int mU_ID) {
+		MU_ID = mU_ID;
+	}
+
+
+	public char getDep_with() {
+		return dep_with;
+	}
+
+	public void setDep_with(char dep_with) {
+		this.dep_with = dep_with;
+	}
+
 
 	public int getMobileT_ID() {
 		return this.mobileT_ID;
@@ -58,11 +53,11 @@ public class Mobilet implements Serializable {
 		this.agent_ID = agent_ID;
 	}
 
-	public BigDecimal getAmount() {
+	public int getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
@@ -74,12 +69,5 @@ public class Mobilet implements Serializable {
 		this.date_of_mobileT = date_of_mobileT;
 	}
 
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
 
 }

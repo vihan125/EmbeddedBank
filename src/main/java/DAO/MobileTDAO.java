@@ -2,7 +2,8 @@ package DAO;
 
 import java.sql.SQLException;
 import java.util.List;
-import model2.Mobilet;
+
+import model.Mobilet;
 
 public interface MobileTDAO {
 

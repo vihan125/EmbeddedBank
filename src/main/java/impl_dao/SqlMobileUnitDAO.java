@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.MobileUnitDAO;
-import model2.MobileUnit;
+import model.MobileUnit;
 import util.databaseConnection;
 
 public class SqlMobileUnitDAO implements MobileUnitDAO {

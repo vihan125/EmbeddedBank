@@ -20,8 +20,8 @@ import DAO.AccountDAO;
 import DAO.MobileTDAO;
 import impl_dao.SqlAccountDAO;
 import impl_dao.SqlMobileTDAO;
-import model2.Account;
-import model2.Mobilet;
+import model.Account;
+import model.Mobilet;
 import response.AuthenticationResponse;
 import util.JwTokenHelper;
 
@@ -113,10 +113,6 @@ public class homeApiService extends BaseApiService {
 			 *  call mobile deposit functionality
 			 * 
 			 * */
-	 	System.out.println(Integer.parseInt((agent_ID_arg)));
-	 	System.out.println(Integer.parseInt((amount_arg)));
-	 	System.out.println(Integer.parseInt((account_ID_arg)));
-	 	System.out.println(Integer.parseInt((MU_ID_arg)));
 	    int agent_ID = Integer.parseInt(agent_ID_arg);
 	    int amount = Integer.parseInt(amount_arg);
 	    int account_ID = Integer.parseInt(account_ID_arg);
@@ -168,8 +164,6 @@ public class homeApiService extends BaseApiService {
 				.entity(obj)
 				.build();
 			
-		
-
 	}
 	
 	
@@ -191,10 +185,6 @@ public class homeApiService extends BaseApiService {
 			 *  call mobile deposit functionality
 			 * 
 			 * */
-	 	System.out.println(Integer.parseInt((agent_ID_arg)));
-	 	System.out.println(Integer.parseInt((amount_arg)));
-	 	System.out.println(Integer.parseInt((account_ID_arg)));
-	 	System.out.println(Integer.parseInt((MU_ID_arg)));
 	    int agent_ID = Integer.parseInt(agent_ID_arg);
 	    int amount = Integer.parseInt(amount_arg);
 	    int account_ID = Integer.parseInt(account_ID_arg);
