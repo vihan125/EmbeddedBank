@@ -9,8 +9,8 @@ create table users(
 
 create table mobile_unit(
 	MU_ID int(9) auto_increment,
-    agent_ID int(9) NOT NULL,
     balance numeric(12,2),
+    password varchar(40) NOT NULL ,
     PRIMARY KEY(MU_ID)
 );
 
@@ -47,7 +47,7 @@ create table mobileT(
 	mobileT_ID int(9) auto_increment,
     date_of_mobileT date NOT NULL,
     amount numeric(12,2) NOT NULL,
-    agent_ID int(9) NOT NULL,
+    MU_ID int(9) NOT NULL,
     dep_with char(1) NOT NULL, -- deposit or withdrawl
     PRIMARY KEY(mobileT_ID)
 );
@@ -71,6 +71,10 @@ create table own_by(
     FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
 
+
+/*
+ *  deprecated functionality
+ * 
 create table mobile_banking_account(
 	MBA_ID int(9) auto_increment,
     customer_ID int(9),
@@ -80,6 +84,8 @@ create table mobile_banking_account(
     FOREIGN KEY(MU_ID) REFERENCES mobile_unit(MU_ID) ON DELETE CASCADE,
     FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
+
+*/
 
 create table fixed_deposit(
 	FD_ID int(9) auto_increment,
@@ -121,3 +127,11 @@ create table contact_no(
     FOREIGN KEY(customer_ID) REFERENCES users(customer_ID) ON DELETE CASCADE
 );
 
+
+create table deal_with(
+	account_ID int(9),
+    MU_ID int(9),
+    PRIMARY KEY(account_ID,MU_ID),
+    FOREIGN KEY(account_ID) REFERENCES account(account_ID) ON DELETE CASCADE,
+    FOREIGN KEY(MU_ID) REFERENCES mobile_unit(MU_ID) ON DELETE CASCADE
+);

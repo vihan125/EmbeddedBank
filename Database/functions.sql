@@ -5,7 +5,7 @@
  * 
  * */
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileWithdrawal`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_withdrawl_arg` DATE, in `agent_ID_arg` int(9), IN `MU_ID_arg` INT(9))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileWithdrawal`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_withdrawl_arg` DATE, IN `MU_ID_arg` INT(9))
     MODIFIES SQL DATA
 BEGIN
  DECLARE balance_arg decimal(12,2);
@@ -24,7 +24,7 @@ BEGIN
  UPDATE account set balance = balance_arg where account_ID = account_ID_arg;
  
  /* insert the data to deposits table */
- INSERT into mobilet(date_of_mobileT,amount,agent_ID,dep_with) values(date_of_withdrawl_arg, amount_arg,agent_ID_arg, "W");
+ INSERT into mobilet(date_of_mobileT,amount,MU_ID,dep_with) values(date_of_withdrawl_arg, amount_arg,MU_ID_arg, "W");
  
  /* get the primary key from deposits table to deposit_ID_arg*/
  SET withdrawl_ID_arg = LAST_INSERT_ID();
@@ -60,7 +60,7 @@ DELIMITER ;
  * */
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileDeposit`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_deposit_arg` DATE, IN `agent_ID_arg` INT(9), IN `MU_ID_arg` INT(9))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `makeMobileDeposit`(IN `account_ID_arg` INT(9), IN `amount_arg` DECIMAL(12,2), IN `date_of_deposit_arg` DATE,  IN `MU_ID_arg` INT(9))
     MODIFIES SQL DATA
 BEGIN
  DECLARE balance_arg decimal(12,2);
@@ -79,7 +79,7 @@ BEGIN
  UPDATE account set balance = balance_arg where account_ID = account_ID_arg;
  
  /* insert the data to deposits table */
- INSERT into mobilet(date_of_mobileT,amount,agent_ID,dep_with) values(date_of_deposit_arg, amount_arg,agent_ID_arg, "D");
+ INSERT into mobilet(date_of_mobileT,amount,MU_ID,dep_with) values(date_of_deposit_arg, amount_arg,MU_ID_arg, "D");
  
  /* get the primary key from deposits table to deposit_ID_arg*/
  SET deposit_ID_arg = LAST_INSERT_ID();
@@ -131,11 +131,11 @@ DELIMITER ;
  * 
  */
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `getMA`(`customer_ID_arg` INT(9), `password_arg` VARCHAR(40)) RETURNS int(9)
+CREATE DEFINER=`root`@`localhost` FUNCTION `getMA`(`MU_ID_arg` INT(9), `password_arg` VARCHAR(40)) RETURNS int(9)
 BEGIN
- DECLARE customerID int(9);
-  Select customer_ID from mobile_banking_account where customer_ID=customer_ID_arg and password= password_arg into customerID;
-  RETURN customerID;
+ DECLARE MU_ID_return int(9);
+  Select MU_ID from mobile_unit where MU_ID=MU_ID_arg and password= password_arg into MU_ID_return;
+  RETURN MU_ID_return;
 END$$
 DELIMITER ;
 

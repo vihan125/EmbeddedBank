@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.AccountTypeDAO;
-import model2.AccountType;
+import model.AccountType;
 import util.databaseConnection;
 
 public class SqlAccountTypeDAO implements AccountTypeDAO {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.DepositDAO;
-import model2.Deposit;
+import model.Deposit;
 import util.databaseConnection;
 
 
@@ -30,11 +30,12 @@ public class SqlDepositDAO implements DepositDAO{
 	 * 
 	 * */
 	public void addDeposit(Deposit deposit, int account_ID) throws SQLException {
-		String queryString = "call makeDeposit(?,?,current_date)" ;
+		String queryString = "call makeDeposit(?,?,?)" ;
 		ptmt = connection.prepareStatement(queryString);
 		
 		ptmt.setInt(1, account_ID);
 		ptmt.setInt(2, deposit.getAmount());
+		ptmt.setDate(3, deposit.getDateOfDeposit());
 		
 		ptmt.executeUpdate();
 		System.out.println("Deposit Added Successfully for customer: "+ Integer.toString(account_ID));

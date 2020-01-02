@@ -1,34 +1,36 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
+
+public class MobileUnit {
 
 
-/**
- * The persistent class for the mobile_unit database table.
- * 
- */
-@Entity
-@Table(name="mobile_unit")
-@NamedQuery(name="MobileUnit.findAll", query="SELECT m FROM MobileUnit m")
-public class MobileUnit implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="MU_ID")
 	private int muId;
-
-	private int agent_ID;
-
-	private BigDecimal balance;
-
-	//bi-directional many-to-one association to MobileBankingAccount
-	@OneToMany(mappedBy="mobileUnit")
-	private List<MobileBankingAccount> mobileBankingAccounts;
+	private int balance;
+	private String password;
 
 	public MobileUnit() {
+	}
+	
+	public MobileUnit(int muId, int balance) {
+		super();
+		this.muId = muId;
+		this.balance = balance;
+	}
+	
+
+	public MobileUnit(int muId, int balance, String password) {
+		super();
+		this.muId = muId;
+		this.balance = balance;
+		this.password = password;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getMuId() {
@@ -39,42 +41,25 @@ public class MobileUnit implements Serializable {
 		this.muId = muId;
 	}
 
-	public int getAgent_ID() {
-		return this.agent_ID;
-	}
 
-	public void setAgent_ID(int agent_ID) {
-		this.agent_ID = agent_ID;
-	}
 
-	public BigDecimal getBalance() {
+	public int getBalance() {
 		return this.balance;
 	}
 
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
-	public List<MobileBankingAccount> getMobileBankingAccounts() {
-		return this.mobileBankingAccounts;
+
+
+	@Override
+	public String toString() {
+		return "MobileUnit [muId=" + muId + ", balance=" + balance + ", password=" + password
+				+ "]";
 	}
 
-	public void setMobileBankingAccounts(List<MobileBankingAccount> mobileBankingAccounts) {
-		this.mobileBankingAccounts = mobileBankingAccounts;
-	}
+	
 
-	public MobileBankingAccount addMobileBankingAccount(MobileBankingAccount mobileBankingAccount) {
-		getMobileBankingAccounts().add(mobileBankingAccount);
-		mobileBankingAccount.setMobileUnit(this);
-
-		return mobileBankingAccount;
-	}
-
-	public MobileBankingAccount removeMobileBankingAccount(MobileBankingAccount mobileBankingAccount) {
-		getMobileBankingAccounts().remove(mobileBankingAccount);
-		mobileBankingAccount.setMobileUnit(null);
-
-		return mobileBankingAccount;
-	}
-
+	
 }

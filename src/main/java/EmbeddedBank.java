@@ -1,22 +1,22 @@
 import java.net.URI;
 import java.sql.SQLException;
-import java.util.List;
+//import java.util.List;
 
 import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.ResourceConfig;
 
-import DAO.AccountDAO;
-import DAO.AccountTypeDAO;
-import DAO.DepositDAO;
-import DAO.MobileTDAO;
-import impl_dao.SqlAccountDAO;
-import impl_dao.SqlAccountTypeDAO;
-import impl_dao.SqlDepositDAO;
-import impl_dao.SqlMobileTDAO;
-import model2.Account;
-import model2.AccountType;
-import model2.Deposit;
-import model2.Mobilet;
+//import DAO.AccountDAO;
+//import DAO.AccountTypeDAO;
+//import DAO.DepositDAO;
+//import DAO.MobileTDAO;
+//import impl_dao.SqlAccountDAO;
+//import impl_dao.SqlAccountTypeDAO;
+//import impl_dao.SqlDepositDAO;
+//import impl_dao.SqlMobileTDAO;
+//import model.Account;
+//import model.AccountType;
+//import model.Deposit;
+//import model.Mobilet;
 import resource.MyResourceConfig;
 //import util.authService;
 
@@ -25,30 +25,34 @@ public class EmbeddedBank {
 
 	public static void main(String[] args) throws SQLException {
 		
-		int agent_ID = 123;
-	    int amount = 3000;
-	    int account_ID = 1;
-	    int MU_ID = 1;
-	    AccountDAO check_balance_Manager = new 	SqlAccountDAO();
-		Account user = check_balance_Manager.getAccount(account_ID);
-	    
-		MobileTDAO accountManager = new SqlMobileTDAO();
-		Mobilet at = new Mobilet();
-		at.setAgent_ID(agent_ID);
-		at.setAmount(amount);
-		at.setDep_with('D');
-		at.setMU_ID(MU_ID);
-		
-		long balance = user.getBalance(); 
-		System.out.println(balance);
-	    
-		accountManager.addMobilet(at, 'D', account_ID);
-		
-		user = check_balance_Manager.getAccount(account_ID);
-		balance = user.getBalance(); 
-		
-	    
-	    System.out.println(balance);
+		/*
+		 *  Checking mobile transaction functionality
+		 * 
+		 * */
+//		int agent_ID = 123;
+//	    int amount = 3000;
+//	    int account_ID = 1;
+//	    int MU_ID = 1;
+//	    AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+//		Account user = check_balance_Manager.getAccount(account_ID);
+//	    
+//		MobileTDAO accountManager = new SqlMobileTDAO();
+//		Mobilet at = new Mobilet();
+//		at.setAgent_ID(agent_ID);
+//		at.setAmount(amount);
+//		at.setDep_with('D');
+//		at.setMU_ID(MU_ID);
+//		
+//		long balance = user.getBalance(); 
+//		System.out.println(balance);
+//	    
+//		accountManager.addMobilet(at, 'D', account_ID);
+//		
+//		user = check_balance_Manager.getAccount(account_ID);
+//		balance = user.getBalance(); 
+//		
+//	    
+//	    System.out.println(balance);
 		
 		/*
 		 *  Checking deposit functionality
@@ -112,7 +116,7 @@ public class EmbeddedBank {
         ResourceConfig resourceConfig = new MyResourceConfig();
         try {
         	
-            GrizzlyServerFactory.createHttpServer(URI.create("http://localhost:6973"), resourceConfig);   
+            GrizzlyServerFactory.createHttpServer(URI.create("http://0.0.0.0:6973"), resourceConfig);   
             System.in.read();
         } catch (Exception e) {
             e.printStackTrace();

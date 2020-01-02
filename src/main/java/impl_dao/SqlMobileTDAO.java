@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.MobileTDAO;
-import model2.Mobilet;
+import model.Mobilet;
 import util.databaseConnection;
 
 public class SqlMobileTDAO implements MobileTDAO {
@@ -25,13 +25,12 @@ public class SqlMobileTDAO implements MobileTDAO {
 		
 		if(type == 'W' || type == 'w') {
 			
-			String queryString = "call makeMobileWithdrawal(?, ?, CURRENT_DATE, ?, ?)" ;
+			String queryString = "call makeMobileWithdrawal(?, ?, CURRENT_DATE, ?)" ;
 			ptmt = connection.prepareStatement(queryString);
 			
 			ptmt.setInt(1, account_ID);
 			ptmt.setInt(2, transaction.getAmount());
-			ptmt.setInt(3, transaction.getAgent_ID());
-			ptmt.setInt(4, transaction.getMU_ID());
+			ptmt.setInt(3, transaction.getMU_ID());
 			
 			
 			ptmt.executeUpdate();
@@ -39,13 +38,12 @@ public class SqlMobileTDAO implements MobileTDAO {
 			
 			
 		}else if(type == 'D'|| type == 'd') {
-			String queryString = "call makeMobileDeposit(?, ?, CURRENT_DATE, ?, ?)" ;
+			String queryString = "call makeMobileDeposit(?, ?, CURRENT_DATE, ?)" ;
 			ptmt = connection.prepareStatement(queryString);
 			
 			ptmt.setInt(1, account_ID);
 			ptmt.setInt(2, transaction.getAmount());
-			ptmt.setInt(3, transaction.getAgent_ID());
-			ptmt.setInt(4, transaction.getMU_ID());
+			ptmt.setInt(3, transaction.getMU_ID());
 			
 			
 			ptmt.executeUpdate();
@@ -65,7 +63,6 @@ public class SqlMobileTDAO implements MobileTDAO {
 		
 		Mobilet transaction = new Mobilet();
 		transaction.setMobileT_ID(mobileT_ID);
-		transaction.setAgent_ID(resultSet.getInt("agent_ID"));
 		transaction.setAmount(resultSet.getInt("amount"));
 		transaction.setDate_of_mobileT(resultSet.getDate("date_of_mobileT"));
 		transaction.setDep_with(  resultSet.getString("dep_with").charAt(0));
@@ -83,12 +80,12 @@ public class SqlMobileTDAO implements MobileTDAO {
 	}
 	
 	public void updateBalance(Mobilet deposit) throws SQLException {
-		String queryString = "UPDATE mobilet set amount=?,date_of_mobileT=?,agent_ID=?,dep_with=? where mobileT_ID=?";
+		String queryString = "UPDATE mobilet set amount=?,date_of_mobileT=?,dep_with=?,MU_ID=? where mobileT_ID=?";
 		ptmt = connection.prepareStatement(queryString);
 		ptmt.setInt(1, deposit.getAmount());
 		ptmt.setDate(2, deposit.getDate_of_mobileT());
-		ptmt.setInt(3, deposit.getAgent_ID());
-		ptmt.setString(4, Character.toString(deposit.getDep_with()));
+		ptmt.setString(3, Character.toString(deposit.getDep_with()));
+		ptmt.setInt(4, deposit.getMU_ID());
 		ptmt.setInt(5, deposit.getMobileT_ID());
 		
 		ptmt.executeUpdate();
@@ -108,11 +105,10 @@ public class SqlMobileTDAO implements MobileTDAO {
 		while (resultSet.next()) {
 			Mobilet transaction = new Mobilet();
 			transaction.setMobileT_ID(resultSet.getInt("mobileT_ID"));
-			transaction.setAgent_ID(resultSet.getInt("agent_ID"));
 			transaction.setAmount(resultSet.getInt("amount"));
 			transaction.setDate_of_mobileT(resultSet.getDate("date_of_mobileT"));
 			transaction.setDep_with(  resultSet.getString("dep_with").charAt(0));
-			
+			transaction.setMU_ID(resultSet.getInt("MU_ID"));
 			
 			list.add(transaction);
 			

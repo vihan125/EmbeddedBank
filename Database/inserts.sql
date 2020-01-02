@@ -50,9 +50,13 @@ call makeWithdrawal(4,'6000','2019-08-21');
 call makeWithdrawal(5,'6000','2019-08-21');
 
 
-insert into mobile_unit(agent_ID,balance) values ('123','50000');
-insert into mobile_unit(agent_ID,balance) values ('678','60000');
-insert into mobile_unit(agent_ID,balance) values ('456','80000');
+insert into mobile_unit(balance,password) values ('50000', 'agent123');
+insert into mobile_unit(balance,password) values ('60000','agent234');
+insert into mobile_unit(balance,password) values ('80000','agent345');
+
+
+INSERT INTO `deal_with`(`account_ID`, `MU_ID`) VALUES (1,1);
+INSERT INTO `deal_with`(`account_ID`, `MU_ID`) VALUES (2,2);
 
 /*
 insert into mobileT(date_of_mobileT,amount,agent_ID) values ('2018-02-04','17000.00','123');
@@ -63,5 +67,9 @@ insert into makes_mobileT values (1,'1');
 insert into makes_mobileT values (2,'2');
 */
 
-call makeMobileWithdrawal(1, 200, CURRENT_DATE, 123, 1);
-call makeMobileDeposit(1, 300, CURRENT_DATE, 123, 1);
+call makeMobileWithdrawal(1, 200, CURRENT_DATE, 1);
+call makeMobileDeposit(1, 300, CURRENT_DATE, 1);
+
+
+/*  Add fixed deposits to a account */
+INSERT INTO `fixed_deposit`(`account_ID`, `FD_type_ID`) VALUES (1,1);

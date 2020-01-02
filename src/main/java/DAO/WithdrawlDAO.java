@@ -2,7 +2,8 @@ package DAO;
 
 import java.sql.SQLException;
 import java.util.List;
-import model2.Withdrawl;
+
+import model.Withdrawl;
 
 public interface WithdrawlDAO {
 	

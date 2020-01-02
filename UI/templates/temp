@@ -1,0 +1,19 @@
+<form action="/">
+        <div class="banner">
+          <h1>Access Account Statistics</h1> 
+        </div>
+        <p class="top-info">Input the account ID to access the statistics of that account.</p>
+     
+        <div class="contact-item">
+          <div class="item">
+            <p>Account_ID<span class="required">*</span></p>
+            <input type="text" id="001" name="name" required/>
+          </div>
+         
+        </div>
+        
+       
+        <div class="btn-block">
+          <button type="submit" href="/"+getElementByID("001").>Access Details</button>
+        </div>
+      </form>

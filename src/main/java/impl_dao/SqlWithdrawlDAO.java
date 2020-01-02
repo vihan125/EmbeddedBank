@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.WithdrawlDAO;
-import model2.Withdrawl;
+import model.Withdrawl;
 import util.databaseConnection;
 
 public class SqlWithdrawlDAO implements WithdrawlDAO{
@@ -24,11 +24,12 @@ public class SqlWithdrawlDAO implements WithdrawlDAO{
 	}
 
 	public void addWithdrawl(Withdrawl withdrawl, int account_ID) throws SQLException {
-		String queryString = "call makeWithdrawal(?,?,'current_date')";
+		String queryString = "call makeWithdrawal(?,?,?)";
 		ptmt = connection.prepareStatement(queryString);
 		
 		ptmt.setInt(1, account_ID);
 		ptmt.setInt(2, withdrawl.getAmount());
+		ptmt.setDate(3, withdrawl.getDateOfWithdrawl());
 		
 		ptmt.executeUpdate();
 		System.out.println("Withdrawl Added Successfully for customer: "+ Integer.toString(account_ID));

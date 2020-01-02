@@ -1,46 +1,35 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 
-/**
- * The persistent class for the deposits database table.
- * 
- */
-@Entity
-@Table(name="deposits")
-@NamedQuery(name="Deposit.findAll", query="SELECT d FROM Deposit d")
-public class Deposit implements Serializable {
-	private static final long serialVersionUID = 1L;
+import java.sql.Date;
 
-	@Id
+
+public class Deposit {
+
+
 	private int deposit_ID;
-
-	private BigDecimal amount;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="date_of_deposit")
+	private int amount;
 	private Date dateOfDeposit;
-
-	//bi-directional many-to-many association to Account
-	@ManyToMany
-	@JoinTable(
-		name="makes_deposit"
-		, joinColumns={
-			@JoinColumn(name="deposit_ID")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="account_ID")
-			}
-		)
-	private List<Account> accounts;
 
 	public Deposit() {
 	}
+	
+	
+	public Deposit( int amount, Date dateOfDeposit) {
+		super();
+		this.amount = amount;
+		this.dateOfDeposit = dateOfDeposit;
+	}
+	
+	public Deposit(int deposit_ID, int amount, Date dateOfDeposit) {
+		super();
+		this.deposit_ID = deposit_ID;
+		this.amount = amount;
+		this.dateOfDeposit = dateOfDeposit;
+	}
+
+
 
 	public int getDeposit_ID() {
 		return this.deposit_ID;
@@ -50,11 +39,11 @@ public class Deposit implements Serializable {
 		this.deposit_ID = deposit_ID;
 	}
 
-	public BigDecimal getAmount() {
+	public int getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
@@ -66,12 +55,10 @@ public class Deposit implements Serializable {
 		this.dateOfDeposit = dateOfDeposit;
 	}
 
-	public List<Account> getAccounts() {
-		return this.accounts;
+	@Override
+	public String toString() {
+		return "Deposit [deposit_ID=" + deposit_ID + ", amount=" + amount + ", dateOfDeposit=" + dateOfDeposit + "]";
 	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
+	
+	
 }

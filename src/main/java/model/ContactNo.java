@@ -1,44 +1,36 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 
 
-/**
- * The persistent class for the contact_no database table.
- * 
- */
-@Entity
-@Table(name="contact_no")
-@NamedQuery(name="ContactNo.findAll", query="SELECT c FROM ContactNo c")
-public class ContactNo implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private ContactNoPK id;
+public class ContactNo{
 
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="customer_ID")
-	private User user;
 
-	public ContactNo() {
+	private int customer_ID;
+	private String  mobile_No;
+	
+	public int getCustomer_ID() {
+		return customer_ID;
 	}
 
-	public ContactNoPK getId() {
-		return this.id;
+	public void setCustomer_ID(int customer_ID) {
+		this.customer_ID = customer_ID;
 	}
 
-	public void setId(ContactNoPK id) {
-		this.id = id;
+	public String getMobile_No() {
+		return mobile_No;
 	}
 
-	public User getUser() {
-		return this.user;
+	public void setMobile_No(String mobile_No) {
+		this.mobile_No = mobile_No;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public ContactNo(int customer_ID, String mobile_No) {
+		super();
+		this.customer_ID = customer_ID;
+		this.mobile_No = mobile_No;
 	}
+
+
 
 }

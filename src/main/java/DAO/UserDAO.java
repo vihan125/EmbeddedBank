@@ -3,7 +3,8 @@ package DAO;
 
 import java.sql.SQLException;
 import java.util.List;
-import model2.User;
+
+import model.User;
 
 public interface UserDAO {
 	

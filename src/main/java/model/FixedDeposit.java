@@ -1,35 +1,30 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
 
 
-/**
- * The persistent class for the fixed_deposit database table.
- * 
- */
-@Entity
-@Table(name="fixed_deposit")
-@NamedQuery(name="FixedDeposit.findAll", query="SELECT f FROM FixedDeposit f")
-public class FixedDeposit implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class FixedDeposit{
 
-	@Id
-	@Column(name="FD_ID")
 	private int fdId;
-
-	//bi-directional many-to-one association to Account
-	@ManyToOne
-	@JoinColumn(name="account_ID")
-	private Account account;
-
-	//bi-directional many-to-one association to FdType
-	@ManyToOne
-	@JoinColumn(name="FD_type_ID")
-	private FdType fdType;
+	private int account_ID;
+	private int fdType;
 
 	public FixedDeposit() {
 	}
+
+	
+	public FixedDeposit(int fdId, int account_ID, int fdType) {
+		super();
+		this.fdId = fdId;
+		this.account_ID = account_ID;
+		this.fdType = fdType;
+	}
+	
+	public FixedDeposit(int account_ID, int fdType) {
+		super();
+		this.account_ID = account_ID;
+		this.fdType = fdType;
+	}
+
 
 	public int getFdId() {
 		return this.fdId;
@@ -39,19 +34,19 @@ public class FixedDeposit implements Serializable {
 		this.fdId = fdId;
 	}
 
-	public Account getAccount() {
-		return this.account;
+	public int getAccount() {
+		return this.account_ID;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccount(int account) {
+		this.account_ID = account;
 	}
 
-	public FdType getFdType() {
+	public int getFdType() {
 		return this.fdType;
 	}
 
-	public void setFdType(FdType fdType) {
+	public void setFdType(int fdType) {
 		this.fdType = fdType;
 	}
 

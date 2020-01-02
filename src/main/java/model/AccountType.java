@@ -1,38 +1,32 @@
 package model;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
 
 
-/**
- * The persistent class for the account_type database table.
- * 
- */
-@Entity
-@Table(name="account_type")
-@NamedQuery(name="AccountType.findAll", query="SELECT a FROM AccountType a")
-public class AccountType implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
+public class AccountType {
+	
 	private int acc_type_ID;
-
-	@Column(name="interest_rate")
-	private BigDecimal interestRate;
-
-	@Column(name="minimum_balance")
-	private BigDecimal minimumBalance;
-
+	private int interestRate;
+	private int minimumBalance;
 	private String name;
-
-	//bi-directional many-to-one association to Account
-	@OneToMany(mappedBy="accountType")
-	private List<Account> accounts;
 
 	public AccountType() {
 	}
+
+	public AccountType(int acc_type_ID,int interestRate, int minimumBalance, String name) {
+		this.acc_type_ID = acc_type_ID;
+		this.interestRate = interestRate;
+		this.minimumBalance = minimumBalance;
+		this.name = name;
+	}
+
+	public AccountType(int interestRate, int minimumBalance, String name) {
+		this.interestRate = interestRate;
+		this.minimumBalance = minimumBalance;
+		this.name = name;
+	}
+
+
 
 	public int getAcc_type_ID() {
 		return this.acc_type_ID;
@@ -42,19 +36,19 @@ public class AccountType implements Serializable {
 		this.acc_type_ID = acc_type_ID;
 	}
 
-	public BigDecimal getInterestRate() {
+	public int getInterestRate() {
 		return this.interestRate;
 	}
 
-	public void setInterestRate(BigDecimal interestRate) {
+	public void setInterestRate(int interestRate) {
 		this.interestRate = interestRate;
 	}
 
-	public BigDecimal getMinimumBalance() {
+	public int getMinimumBalance() {
 		return this.minimumBalance;
 	}
 
-	public void setMinimumBalance(BigDecimal minimumBalance) {
+	public void setMinimumBalance(int minimumBalance) {
 		this.minimumBalance = minimumBalance;
 	}
 
@@ -66,26 +60,11 @@ public class AccountType implements Serializable {
 		this.name = name;
 	}
 
-	public List<Account> getAccounts() {
-		return this.accounts;
+	@Override
+	public String toString() {
+		return "AccountType [acc_type_ID=" + acc_type_ID + ", interestRate=" + interestRate + ", minimumBalance="
+				+ minimumBalance + ", name=" + name + "]";
 	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
-	public Account addAccount(Account account) {
-		getAccounts().add(account);
-		account.setAccountType(this);
-
-		return account;
-	}
-
-	public Account removeAccount(Account account) {
-		getAccounts().remove(account);
-		account.setAccountType(null);
-
-		return account;
-	}
+	
 
 }

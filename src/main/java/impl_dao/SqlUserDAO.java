@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.UserDAO;
-import model2.User;
+import model.User;
 import util.databaseConnection;
 
 public class SqlUserDAO implements UserDAO {
@@ -23,6 +23,10 @@ public class SqlUserDAO implements UserDAO {
 		this.connection = databaseConnection.connect();
 	}
 	
+	
+
+
+
 	public void addUser(User user) throws SQLException {
 		
 		String queryString = "CALL addUser(?,?,?,?)" ;
