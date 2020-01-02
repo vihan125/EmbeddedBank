@@ -21,7 +21,7 @@ class DataBaseHelper {
 
   initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'DeviceDB.db');
+    String path = join(documentDirectory.path, 'FDDB1.db');
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
     return db;
   }
@@ -62,7 +62,7 @@ class DataBaseHelper {
         .execute('insert into MBA_accounts values ("2","tharaka","tharaka123","children","120000.00")');
 
     await db
-        .execute('insert into balance values("123","50000","agent","agent123")');
+        .execute('insert into balance values("345","50000","agent1","agent123")');
   }
 
 }

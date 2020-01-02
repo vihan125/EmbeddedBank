@@ -97,13 +97,12 @@ class _WithdrawState extends State<Withdraw> {
                                   .show();
                             } else {
                                 if(wAmount<DeviceBalance){
-                                    var last_id = await db.rawQuery(
-                                       'select * from transactions order by transaction_id DESC limit 1');
+                                    var last_id = await db.rawQuery('select * from transactions order by transaction_id DESC limit 1');
                                     if (last_id.isEmpty) {
 
                                            if (wAmount < ma.balance) {
                                                 await db.execute(
-                                                   'insert into transactions (account_id,date_time,amount,type)'
+                                                    'insert into transactions (account_id,date_time,amount,type)'
                                                      'values("$acc_id","$date_time","$amount","Withdrawl")');
                                                 var new_id = await db.rawQuery(
                                                    'select * from transactions order by transaction_id DESC limit 1');
@@ -114,7 +113,9 @@ class _WithdrawState extends State<Withdraw> {
                                                            String new_t = t.transaction_id.toString();
                                                            await db.execute('insert into makes values("$acc_id","$new_t")');
                                                            String new_balance = (balance-wAmount).toString();
+                                                           String new_Dalance = (DeviceBalance-wAmount).toString();
                                                            await db.rawQuery('update MBA_accounts set balance = "$new_balance" where MBA_id = "$acc_id"');
+                                                           await db.rawQuery('update balance set balance = "$new_Dalance" where agent_id = "123"');
                                                            Navigator.pushReplacementNamed(context, '/success');
                                                     } else {
                                                         Alert(context: context,
@@ -141,7 +142,9 @@ class _WithdrawState extends State<Withdraw> {
                                                       String new_t = t2.transaction_id.toString();
                                                       await db.execute('insert into makes values("$acc_id","$new_t")');
                                                       String new_balance = (balance-wAmount).toString();
+                                                      String new_Dalance = (DeviceBalance-wAmount).toString();
                                                       await db.rawQuery('update MBA_accounts set balance = "$new_balance" where MBA_id = "$acc_id"');
+                                                      await db.rawQuery('update balance set balance = "$new_Dalance" where agent_id = "123"');
                                                       var trans =  await db.rawQuery(
                                                           'select * from transactions');
 
@@ -150,9 +153,15 @@ class _WithdrawState extends State<Withdraw> {
                                                           Transactions t = Transactions.fromMap(trans[i]);
                                                           dt.sendData(t);
                                                         }
+
+                                                       /* Future.delayed(const Duration(milliseconds: 30000),()
+                                                        {*/
+                                                          db.execute('delete from transactions');
+                                                          db.execute('delete from makes');
+                                                       /* });*/
                                                       }
-                                                      db.execute('delete from transactions');
-                                                      db.execute('delete from makes');
+
+
                                                       Navigator.pushReplacementNamed(context, '/success');
                                                 } else {
                                                     Alert(context: context,
