@@ -31,10 +31,12 @@ are as follows,
 <br>
 
 # ERD Diagram Central Database
-![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/central%20database.png)
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/central%20database.png width="90%" height="90%" align="middle">
+
 
 # ERD Diagram Embedded Database
-![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20database.png)
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20database.png width="90%" height="90%" align="middle">
 
 
 # Mobile login
@@ -43,14 +45,6 @@ Required parameters
 <li>MBA_ID</li>
 <li>password</li>
 
-```
-POST /auth HTTP/1.1
-Host: localhost:6973
-MBA_ID: 2
-password: Tharaka
-Cache-Control: no-cache
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-```
 
 
 ![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20auth%20successful.PNG)
@@ -62,32 +56,53 @@ unsuccessful login will return following
 ![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20auth%20unsuccessful.PNG)
 
 # Mobile deposit
-```
-POST /mDeposit HTTP/1.1
-Host: localhost:6973
-agent_ID: 123
-privatekey: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUaGFyYWthIiwiZXhwIjoxNTc3ODUzODAzfQ.-ld0neya6a1rNzVOtMLQcVImy2kbbrhUPJ67EU8K3Ms"
-amount: 3000
-account_ID: 1
-MU_ID: 1
-Cache-Control: no-cache
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-```
-![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20deposit.PNG)
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20deposit.PNG width="90%" height="90%" align="middle">
+
 
 # Mobile withdrawal
 
-```
-POST /mWithdrawal HTTP/1.1
-Host: localhost:6973
-agent_ID: 123
-privatekey: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUaGFyYWthIiwiZXhwIjoxNTc3ODUzODAzfQ.-ld0neya6a1rNzVOtMLQcVImy2kbbrhUPJ67EU8K3Ms"
-amount: 3000
-account_ID: 1
-MU_ID: 1
-Cache-Control: no-cache
-Postman-Token: 2df7bc2c-ba92-64cb-4610-6d9e971ec7b2
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-```
 
-![](https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20withdrawal.PNG)
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20withdrawal.PNG width="90%" height="90%" align="middle">
+
+
+# ADD new user to the system
+
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/add%20new%20user.PNG width="90%" height="90%" align="middle">
+
+# ADD new account to a user
+
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/add%20new%20account%20to%20user.PNG width="90%" height="90%" align="middle">
+
+
+# Withdrawal through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/UI%20withdrawal.PNG width="90%" height="90%" align="middle">
+
+# Deposit through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/UI%20deposit.PNG width="90%" height="90%" align="middle">
+
+# Deposit through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/UI%20deposit.PNG width="90%" height="90%" align="middle">
+
+# Add a fixed deposit through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/UI%20add%20new%20fixed%20deposit.PNG width="90%" height="90%" align="middle">
+
+# View Customer info through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/customer%20info%20view.PNG width="90%" height="90%" align="middle">
+
+# View Customer info through web UI
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/customer%20info%20view.PNG width="90%" height="90%" align="middle">
+
+# Get latest balance of an account
+
+<img src=https://github.com/tharaka27/EmbeddedBank/blob/master/images/mobile%20refresh%20balance.PNG width="90%" height="90%" align="middle">
+
+
