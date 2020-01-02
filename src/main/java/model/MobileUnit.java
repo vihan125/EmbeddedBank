@@ -5,22 +5,33 @@ public class MobileUnit {
 
 
 	private int muId;
-	private int agent_ID;
 	private int balance;
+	private String password;
 
 	public MobileUnit() {
 	}
 	
-	
-
-	public MobileUnit(int muId, int agent_ID, int balance) {
+	public MobileUnit(int muId, int balance) {
 		super();
 		this.muId = muId;
-		this.agent_ID = agent_ID;
 		this.balance = balance;
 	}
+	
 
+	public MobileUnit(int muId, int balance, String password) {
+		super();
+		this.muId = muId;
+		this.balance = balance;
+		this.password = password;
+	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public int getMuId() {
 		return this.muId;
@@ -30,13 +41,7 @@ public class MobileUnit {
 		this.muId = muId;
 	}
 
-	public int getAgent_ID() {
-		return this.agent_ID;
-	}
 
-	public void setAgent_ID(int agent_ID) {
-		this.agent_ID = agent_ID;
-	}
 
 	public int getBalance() {
 		return this.balance;
@@ -46,10 +51,15 @@ public class MobileUnit {
 		this.balance = balance;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "MobileUnit [muId=" + muId + ", agent_ID=" + agent_ID + ", balance=" + balance + "]";
+		return "MobileUnit [muId=" + muId + ", balance=" + balance + ", password=" + password
+				+ "]";
 	}
+
+	
 
 	
 }

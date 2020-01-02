@@ -116,7 +116,7 @@ public class EmbeddedBank {
         ResourceConfig resourceConfig = new MyResourceConfig();
         try {
         	
-            GrizzlyServerFactory.createHttpServer(URI.create("http://localhost:6973"), resourceConfig);   
+            GrizzlyServerFactory.createHttpServer(URI.create("http://0.0.0.0:6973"), resourceConfig);   
             System.in.read();
         } catch (Exception e) {
             e.printStackTrace();

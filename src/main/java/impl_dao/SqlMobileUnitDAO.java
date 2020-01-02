@@ -26,14 +26,14 @@ public class SqlMobileUnitDAO implements MobileUnitDAO {
 	
 	public void addMobileUnit(MobileUnit mu) throws SQLException {
 		
-		String queryString = "insert into mobile_unit(agent_ID,balance) values (?,?)" ;
+		String queryString = "insert into mobile_unit(balance,password) values (?,?)" ;
 		ptmt = connection.prepareStatement(queryString);
 		
-		ptmt.setInt(1, mu.getAgent_ID());
 		ptmt.setInt(2, mu.getBalance());
+		ptmt.setString(2, mu.getPassword());
 		
 		ptmt.executeUpdate();
-		System.out.println("Deposit Added Successfully for customer: "+ mu.toString());
+		System.out.println("Mobile unit created: "+ mu.toString());
 		
 	}
 	
@@ -50,20 +50,19 @@ public class SqlMobileUnitDAO implements MobileUnitDAO {
 		
 		MobileUnit mu = new MobileUnit();
 		
-		mu.setAgent_ID(resultSet.getInt("agent_ID"));
 		mu.setBalance(resultSet.getInt("balance"));
 		mu.setMuId(resultSet.getInt("MU_ID"));
-		
+		mu.setPassword(resultSet.getString("password"));
 		return mu;
 		
 	}
 	
 	public void updateBalance(MobileUnit mu) throws SQLException {
-		String queryString = "UPDATE mobile_unit set balance=?,agent_ID=? where MU_ID=?";
+		String queryString = "UPDATE mobile_unit set balance=?,password=? where MU_ID=?";
 		ptmt = connection.prepareStatement(queryString);
 		ptmt.setInt(1, mu.getBalance());
-		ptmt.setInt(2, mu.getAgent_ID());
 		ptmt.setInt(3, mu.getMuId());
+		ptmt.setString(3, mu.getPassword());
 		
 		ptmt.executeUpdate();
 		System.out.println("Data Updated Successfully where MU_ID = " + Integer.toString(mu.getMuId()));
@@ -94,9 +93,9 @@ public class SqlMobileUnitDAO implements MobileUnitDAO {
 		
 		while (resultSet.next()) {
 			int MU_ID = resultSet.getInt("MU_ID");
-			int agent_ID = 	resultSet.getInt("agent_ID");
 			int balance = resultSet.getInt("balance");
-			mu = new  MobileUnit(MU_ID, agent_ID, balance);
+			String password = resultSet.getString("password");
+			mu = new  MobileUnit(MU_ID, balance, password);
 	
 			list.add(mu);
 			

@@ -23,6 +23,10 @@ public class SqlUserDAO implements UserDAO {
 		this.connection = databaseConnection.connect();
 	}
 	
+	
+
+
+
 	public void addUser(User user) throws SQLException {
 		
 		String queryString = "CALL addUser(?,?,?,?)" ;
