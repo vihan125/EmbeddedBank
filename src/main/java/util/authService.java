@@ -1,9 +1,9 @@
 package util;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+//import java.util.List;
+//
+//import javax.persistence.EntityManager;
+//import javax.persistence.Query;
 
 
 import java.sql.CallableStatement;
