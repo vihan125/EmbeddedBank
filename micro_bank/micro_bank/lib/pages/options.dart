@@ -54,10 +54,10 @@ class _optionsState extends State<options> {
                            side: BorderSide(color: Colors.red)),
                        color: Colors.red,
                        child: Padding(
-                         padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+                         padding: const EdgeInsets.all(10.0),
                          child: Text('DEPOSIT MONEY',
                            style: TextStyle(
-                               fontSize: 28.0,
+                               fontSize: 24.0,
                                fontWeight: FontWeight.bold,
                                fontFamily:'fonts/Anton-Regular.ttf',
                                letterSpacing: 1.0,
@@ -75,10 +75,10 @@ class _optionsState extends State<options> {
                          side: BorderSide(color: Colors.red)),
                      color: Colors.red,
                      child: Padding(
-                       padding: const EdgeInsets.all(20.0),
+                       padding: const EdgeInsets.all(10.0),
                        child: Text('WITHDRAW MONEY',
                          style: TextStyle(
-                             fontSize: 28.0,
+                             fontSize: 24.0,
                              fontWeight: FontWeight.bold,
                              fontFamily:'fonts/Anton-Regular.ttf',
                              letterSpacing: 1.0,

@@ -14,7 +14,7 @@ class _SuccessState extends State<Success> {
     return Scaffold(
       backgroundColor: Colors.redAccent,
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Column(
             children: <Widget>[
@@ -29,16 +29,16 @@ class _SuccessState extends State<Success> {
               Text('Successful',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 60.0,
+                  fontSize: 50.0,
                   fontFamily: 'fonts/Anton-Regular.ttf',
                   color: Colors.white,
                 ),),
-              SizedBox(height: 35.0,),
+              SizedBox(height: 30.0,),
 
               Icon(Icons.check_circle,
               color: Colors.white,
-              size: 80.0,),
-              SizedBox(height: 50.0,),
+              size: 50.0,),
+              SizedBox(height: 30.0,),
               RaisedButton(
                 onPressed: ()async{
                   Database db = await DataBaseHelper.instance.db;
@@ -54,7 +54,7 @@ class _SuccessState extends State<Success> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Back',
                     style: TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         fontFamily:'fonts/Anton-Regular.ttf',
                         letterSpacing: 1.0,

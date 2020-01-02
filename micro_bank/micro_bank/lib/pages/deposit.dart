@@ -140,9 +140,16 @@ class _depositState extends State<deposit> {
                                     Transactions t = Transactions.fromMap(trans[i]);
                                     dt.sendData(t);
                                   }
+                                  db.execute(
+                                      'delete from transactions');
+                                  db.execute(
+                                      'delete from makes');
                                 }
-                                db.execute('delete from transactions');
-                                db.execute('delete from makes');
+                               /* Future.delayed(const Duration(milliseconds: 30000),()
+                                {*/
+
+                                /*});*/
+
                                 Navigator.pushReplacementNamed(
                                     context, '/success');
                               } else {
