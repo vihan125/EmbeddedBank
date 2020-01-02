@@ -9,13 +9,19 @@ from account natural join makes_deposit natural join deposits where account_ID=1
 
 
 -- Make deposits through bank 
-
+call makeDeposit(?,?,?);
 
 -- Make withdrawals through bank
-
+call makeWithdrawal(?,?,?);
 
 -- Make Fixed deposits
 
 
+-- Add User through ui
+CALL addUser('ranuli@gmail.com','2010-08-05','ranuli','pehara');
+
+
+-- Add account through ui
+CALL addAccount('1','2','120000', current_date);
 
 

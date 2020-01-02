@@ -20,6 +20,12 @@ public class Withdrawl {
 		this.dateOfWithdrawl = dateOfWithdrawl;
 	}
 
+	public Withdrawl (int amount, Date dateOfWithdrawl) {
+		super();
+		this.amount = amount;
+		this.dateOfWithdrawl = dateOfWithdrawl;
+	}
+	
 	public int getWithdrawl_ID() {
 		return this.withdrawl_ID;
 	}

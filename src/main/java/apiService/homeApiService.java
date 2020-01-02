@@ -19,14 +19,23 @@ import org.codehaus.jettison.json.JSONObject;
 
 import DAO.AccountDAO;
 import DAO.AccountTypeDAO;
+import DAO.DepositDAO;
+import DAO.FixedDepositDAO;
 import DAO.MobileTDAO;
+import DAO.WithdrawlDAO;
 import impl_dao.SqlAccountDAO;
 import impl_dao.SqlAccountTypeDAO;
+import impl_dao.SqlDepositDAO;
+import impl_dao.SqlFixedDepositDAO;
 import impl_dao.SqlMobileTDAO;
+import impl_dao.SqlWithdrawlDAO;
 import model.Account;
 import model.AccountType;
+import model.Deposit;
+import model.FixedDeposit;
 import model.Mobilet;
 import model.User;
+import model.Withdrawl;
 import model.viewAccountModel;
 import response.AuthenticationResponse;
 import util.AddAccount;
@@ -409,4 +418,145 @@ public class homeApiService extends BaseApiService {
 				.entity(obj)
 				.build();
 	} 
+	
+	
+	
+	@POST
+	@Path("addDeposit")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addDeposit(
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg,
+			@DefaultValue("") @HeaderParam("amount") String amount_arg,
+			@DefaultValue("") @HeaderParam("date_of_deposit") String date_of_deposit_arg) 
+					throws SQLException {
+		
+	      JSONObject obj = new JSONObject();
+	      
+	      Date date_of_deposit = Date.valueOf(date_of_deposit_arg);
+	      int account_ID = Integer.parseInt(account_ID_arg);
+	      int amount = Integer.parseInt(amount_arg);
+	    		  
+	      Deposit dep = new Deposit(amount, date_of_deposit );
+	      DepositDAO depositManager = new SqlDepositDAO();
+	      depositManager.addDeposit(dep, account_ID);
+	      
+	      AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+	      Account user = check_balance_Manager.getAccount(account_ID);
+		  long balance = user.getBalance(); 
+		    
+	      try {
+	    	  obj.put("status", "Successfully deposited amount of " + amount_arg + " to account id :" + account_ID_arg);
+	    	  obj.put("balance", Long.toString( balance));
+
+	      
+	      	} catch (JSONException e) {
+	      		// TODO Auto-generated catch block
+	      		e.printStackTrace();
+	      	}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+	} 
+	
+	
+	@POST
+	@Path("addWithdrawal")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addWithdrawal(
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg,
+			@DefaultValue("") @HeaderParam("amount") String amount_arg,
+			@DefaultValue("") @HeaderParam("date_of_deposit") String date_of_deposit_arg) 
+					throws SQLException {
+		
+	      JSONObject obj = new JSONObject();
+	      
+	      Date date_of_deposit = Date.valueOf(date_of_deposit_arg);
+	      int account_ID = Integer.parseInt(account_ID_arg);
+	      int amount = Integer.parseInt(amount_arg);
+	    		  
+	      Withdrawl withdrawl = new Withdrawl(amount, date_of_deposit );
+	      WithdrawlDAO depositManager = new SqlWithdrawlDAO();
+	      depositManager.addWithdrawl(withdrawl, account_ID);
+	      
+	      AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+	      Account user = check_balance_Manager.getAccount(account_ID);
+		  long balance = user.getBalance(); 
+		    
+	      try {
+	    	  obj.put("status", "Successfully withdrawn amount of " + amount_arg + " to account id :" + account_ID_arg);
+	    	  obj.put("balance", Long.toString( balance));
+
+	      
+	      	} catch (JSONException e) {
+	      		// TODO Auto-generated catch block
+	      		e.printStackTrace();
+	      	}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+	} 
+	
+	
+	@POST
+	@Path("mobileRefresh")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response mobileRefresh(
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg) 
+					throws SQLException {
+		
+	      JSONObject obj = new JSONObject();
+	      int account_ID = Integer.parseInt(account_ID_arg);
+	      
+	      AccountDAO check_balance_Manager = new 	SqlAccountDAO();
+	      Account user = check_balance_Manager.getAccount(account_ID);
+		  long balance = user.getBalance(); 
+		  System.out.println("balance of account: " + account_ID_arg + " is " + Long.toString(balance));  
+	      try {
+	    	  obj.put("balance", Long.toString( balance));
+
+	      
+	      	} catch (JSONException e) {
+	      		// TODO Auto-generated catch block
+	      		e.printStackTrace();
+	      	}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+	}
+	
+	
+	@POST
+	@Path("addFixedDeposit")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addFixedDeposit(
+			@DefaultValue("") @HeaderParam("account_ID") String account_ID_arg,
+			@DefaultValue("") @HeaderParam("FD_type_ID") String FD_type_ID_arg) 
+					throws SQLException {
+		
+	      JSONObject obj = new JSONObject();
+	      int account_ID = Integer.parseInt(account_ID_arg);
+	      int FD_type_ID = Integer.parseInt(FD_type_ID_arg);
+	      
+	      FixedDeposit fd = new FixedDeposit(account_ID,FD_type_ID);
+	      FixedDepositDAO fd_manager = new SqlFixedDepositDAO();
+	      fd_manager.addFixedDeposit(fd);
+	       
+		  System.out.println("New fixed deposit created");  
+	      try {
+	    	  obj.put("status","Successfully created new fixed deposit");
+	    	  obj.put("account_ID",account_ID_arg);
+	    	  obj.put("FD_type_ID",FD_type_ID_arg);
+	    	  
+	      	} catch (JSONException e) {
+	      		// TODO Auto-generated catch block
+	      		e.printStackTrace();
+	      	}
+		return Response.ok()
+				.type(MediaType.APPLICATION_JSON)
+				.entity(obj)
+				.build();
+	}
 }

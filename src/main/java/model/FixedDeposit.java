@@ -18,6 +18,12 @@ public class FixedDeposit{
 		this.account_ID = account_ID;
 		this.fdType = fdType;
 	}
+	
+	public FixedDeposit(int account_ID, int fdType) {
+		super();
+		this.account_ID = account_ID;
+		this.fdType = fdType;
+	}
 
 
 	public int getFdId() {

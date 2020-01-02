@@ -71,3 +71,5 @@ call makeMobileWithdrawal(1, 200, CURRENT_DATE, 1);
 call makeMobileDeposit(1, 300, CURRENT_DATE, 1);
 
 
+/*  Add fixed deposits to a account */
+INSERT INTO `fixed_deposit`(`account_ID`, `FD_type_ID`) VALUES (1,1);
